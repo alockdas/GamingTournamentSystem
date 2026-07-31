@@ -1,0 +1,14 @@
+/Users/alockdasjoy/GamingTournamentSystem/bin/Debug/net11.0/GamingTournamentSystem
+/Users/alockdasjoy/GamingTournamentSystem/bin/Debug/net11.0/GamingTournamentSystem.deps.json
+/Users/alockdasjoy/GamingTournamentSystem/bin/Debug/net11.0/GamingTournamentSystem.runtimeconfig.json
+/Users/alockdasjoy/GamingTournamentSystem/bin/Debug/net11.0/GamingTournamentSystem.dll
+/Users/alockdasjoy/GamingTournamentSystem/bin/Debug/net11.0/GamingTournamentSystem.pdb
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.GeneratedMSBuildEditorConfig.editorconfig
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.AssemblyInfoInputs.cache
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.AssemblyInfo.cs
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.csproj.CoreCompileInputs.cache
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.dll
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/refint/GamingTournamentSystem.dll
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.pdb
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/GamingTournamentSystem.genruntimeconfig.cache
+/Users/alockdasjoy/GamingTournamentSystem/obj/Debug/net11.0/ref/GamingTournamentSystem.dll
