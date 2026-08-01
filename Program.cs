@@ -1,1 +1,5 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using GamingTournamentSystem.Database;
+
+DatabaseManager databaseManager = new DatabaseManager();
+
+Console.WriteLine("Database Initialized Successfully!");
