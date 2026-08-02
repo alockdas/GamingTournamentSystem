@@ -48,24 +48,31 @@ public class MainMenu
     private void Register()
     {
         Console.Clear();
-
+    
         Console.WriteLine("===== REGISTER =====");
-
+    
+        Console.Write("Full Name: ");
+        string fullName = Console.ReadLine()!;
+    
         Console.Write("Username: ");
         string username = Console.ReadLine()!;
-
+    
+        Console.Write("Email: ");
+        string email = Console.ReadLine()!;
+    
         Console.Write("Password: ");
         string password = Console.ReadLine()!;
-
-        Console.Write("Role (Admin/Player): ");
+    
+        Console.Write("Role (Admin/Organizer/Player): ");
         string role = Console.ReadLine()!;
-
-        User user = new User(username, password, role);
-
+    
+        User user = new User(fullName, username, email, password, role);
+    
         auth.Register(user);
-
+    
+        Console.WriteLine();
         Console.WriteLine("Registration Complete!");
-
+    
         Pause();
     }
 

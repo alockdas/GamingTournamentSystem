@@ -1,4 +1,4 @@
-using Microsoft.Data.Sqlite;
+using MySql.Data.MySqlClient;
 using GamingTournamentSystem.Database;
 using GamingTournamentSystem.Models;
 
@@ -15,45 +15,63 @@ namespace GamingTournamentSystem.Services
 
         public void Register(User user)
         {
-            var command = new SqliteCommand(
-                "INSERT INTO Users (Username, Password, Role) VALUES (@username, @password, @role)");
+            using (MySqlConnection connection = databaseManager.GetConnection())
+            {
+                connection.Open();
 
-            command.Parameters.AddWithValue("@username", user.Username);
-            command.Parameters.AddWithValue("@password", user.Password);
-            command.Parameters.AddWithValue("@role", user.Role);
+                string query = @"INSERT INTO Users
+                                (FullName, Username, Email, Password, Role)
+                                VALUES
+                                (@fullname, @username, @email, @password, @role)";
 
-            databaseManager.ExecuteCommand(command);
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fullname", user.FullName);
+                    command.Parameters.AddWithValue("@username", user.Username);
+                    command.Parameters.AddWithValue("@email", user.Email);
+                    command.Parameters.AddWithValue("@password", user.Password);
+                    command.Parameters.AddWithValue("@role", user.Role);
+
+                    command.ExecuteNonQuery();
+                }
+            }
 
             Console.WriteLine("Registration Successful!");
         }
 
         public User? Login(string username, string password)
         {
-            string query = @"SELECT * FROM Users
-                             WHERE Username = @username
-                             AND Password = @password";
-
-            using var connection = databaseManager.GetConnection();
-            connection.Open();
-
-            using var command = new SqliteCommand(query, connection);
-
-            command.Parameters.AddWithValue("@username", username);
-            command.Parameters.AddWithValue("@password", password);
-
-            using var reader = command.ExecuteReader();
-
-            if (reader.Read())
+            using (MySqlConnection connection = databaseManager.GetConnection())
             {
-                return new User(
-                    Convert.ToInt32(reader["Id"]),
-                    reader["Username"].ToString()!,
-                    reader["Password"].ToString()!,
-                    reader["Role"].ToString()!
-                );
+                connection.Open();
+
+                string query = @"SELECT * FROM Users
+                                 WHERE Username = @username
+                                 AND Password = @password";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new User(
+                                Convert.ToInt32(reader["UserID"]),
+                                reader["FullName"].ToString()!,
+                                reader["Username"].ToString()!,
+                                reader["Email"].ToString()!,
+                                reader["Password"].ToString()!,
+                                reader["Role"].ToString()!
+                            );
+                        }
+                    }
+                }
             }
 
             return null;
-            }
         }
+    }
 }

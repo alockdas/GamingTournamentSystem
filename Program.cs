@@ -1,11 +1,13 @@
-﻿using GamingTournamentSystem.Database;
-using GamingTournamentSystem.Menus;
+﻿using GamingTournamentSystem.Menus;
 
-DatabaseManager database = new DatabaseManager();
-
-database.InitializeDatabase();
-
-Console.WriteLine("Database Initialized Successfully!");
-
-MainMenu menu = new MainMenu();
-menu.Show();
+namespace GamingTournamentSystem
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MainMenu menu = new MainMenu();
+            menu.Show();
+        }
+    }
+}
