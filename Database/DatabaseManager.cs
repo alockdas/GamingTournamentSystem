@@ -32,5 +32,30 @@ namespace GamingTournamentSystem.Database
 
             Console.WriteLine("Users table created successfully.");
         }
+        public void ExecuteNonQuery(string query)
+        {
+            using var connection = new SqliteConnection(connectionString);
+
+            connection.Open();
+
+            using var command = new SqliteCommand(query, connection);
+
+            command.ExecuteNonQuery();
+        }
+
+        public void ExecuteCommand(SqliteCommand command)
+        {
+            using var connection = new SqliteConnection(connectionString);
+
+            connection.Open();
+
+            command.Connection = connection;
+
+            command.ExecuteNonQuery();
+        }
+        public SqliteConnection GetConnection()
+{       
+            return new SqliteConnection(connectionString);
+        }
     }
 }
