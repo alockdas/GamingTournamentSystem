@@ -11,7 +11,7 @@ namespace GamingTournamentSystem.Database
             InitializeDatabase();
         }
 
-        private void InitializeDatabase()
+        public void InitializeDatabase()
         {
             using var connection = new SqliteConnection(connectionString);
 

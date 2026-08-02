@@ -1,22 +1,11 @@
-﻿using GamingTournamentSystem.Models;
-using GamingTournamentSystem.Services;
+﻿using GamingTournamentSystem.Database;
+using GamingTournamentSystem.Menus;
 
-AuthenticationService auth = new AuthenticationService();
+DatabaseManager database = new DatabaseManager();
 
-// Register Test
-// User user = new User("Alock", "1234", "Admin");
-// auth.Register(user);
+database.InitializeDatabase();
 
-// Login Test
-User? loggedUser = auth.Login("Alock", "1234");
+Console.WriteLine("Database Initialized Successfully!");
 
-if (loggedUser != null)
-{
-    Console.WriteLine("Login Successful!");
-    Console.WriteLine($"Welcome {loggedUser.Username}");
-    Console.WriteLine($"Role: {loggedUser.Role}");
-}
-else
-{
-    Console.WriteLine("Invalid Username or Password!");
-}
+MainMenu menu = new MainMenu();
+menu.Show();
