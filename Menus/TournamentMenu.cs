@@ -52,13 +52,11 @@ namespace GamingTournamentSystem.Menus
                         break;
 
                     case "3":
-                        Console.WriteLine("\nUpdate Tournament - Coming Soon...");
-                        Pause();
+                        UpdateTournament();
                         break;
 
                     case "4":
-                        Console.WriteLine("\nDelete Tournament - Coming Soon...");
-                        Pause();
+                        DeleteTournament();
                         break;
 
                     case "5":
@@ -119,12 +117,12 @@ namespace GamingTournamentSystem.Menus
         private void ViewTournaments()
         {
             Console.Clear();
-        
+
             Console.WriteLine("========== TOURNAMENT LIST ==========\n");
-        
+
             // Get all tournaments from the database
             List<Tournament> tournaments = tournamentService.GetAllTournaments();
-        
+
             // Check if the list is empty
             if (tournaments.Count == 0)
             {
@@ -132,7 +130,7 @@ namespace GamingTournamentSystem.Menus
                 Pause();
                 return;
             }
-        
+
             // Display table header
             Console.WriteLine("{0,-5} {1,-25} {2,-15} {3,-12} {4,-12} {5,-12} {6,-12}",
                 "ID",
@@ -142,9 +140,9 @@ namespace GamingTournamentSystem.Menus
                 "End Date",
                 "Prize",
                 "Status");
-        
+
             Console.WriteLine(new string('-', 100));
-        
+
             // Display each tournament
             foreach (Tournament tournament in tournaments)
             {
@@ -157,9 +155,97 @@ namespace GamingTournamentSystem.Menus
                     tournament.PrizePool,
                     tournament.Status);
             }
-        
+
     Pause();
 }
+
+
+
+        // ======================================================
+        // Update an existing tournament
+        // ======================================================
+        private void UpdateTournament()
+        {
+            Console.Clear();
+
+            Console.WriteLine("========== UPDATE TOURNAMENT ==========\n");
+
+            // Ask the user which tournament to update
+            Console.Write("Enter Tournament ID: ");
+            int tournamentID = int.Parse(Console.ReadLine()!);
+
+            Console.Write("New Tournament Name: ");
+            string tournamentName = Console.ReadLine()!;
+
+            Console.Write("New Game Name: ");
+            string gameName = Console.ReadLine()!;
+
+            Console.Write("New Start Date (yyyy-mm-dd): ");
+            DateTime startDate = DateTime.Parse(Console.ReadLine()!);
+
+            Console.Write("New End Date (yyyy-mm-dd): ");
+            DateTime endDate = DateTime.Parse(Console.ReadLine()!);
+
+            Console.Write("New Prize Pool: ");
+            decimal prizePool = decimal.Parse(Console.ReadLine()!);
+
+            Console.Write("New Status (Upcoming/Running/Completed): ");
+            string status = Console.ReadLine()!;
+
+            // Create a Tournament object with updated information
+            Tournament tournament = new Tournament(
+                tournamentID,
+                tournamentName,
+                gameName,
+                startDate,
+                endDate,
+                prizePool,
+                status
+            );
+
+            // Update the tournament in the database
+            tournamentService.UpdateTournament(tournament);
+
+            Console.WriteLine();
+            Console.WriteLine("Tournament Updated Successfully!");
+
+            Pause();
+        }
+
+
+
+        // ======================================================
+        // Delete a tournament
+        // ======================================================
+        private void DeleteTournament()
+        {
+            Console.Clear();
+        
+            Console.WriteLine("========== DELETE TOURNAMENT ==========\n");
+        
+            // Ask the user which tournament to delete
+            Console.Write("Enter Tournament ID: ");
+            int tournamentID = int.Parse(Console.ReadLine()!);
+        
+            Console.Write("\nAre you sure you want to delete this tournament? (Y/N): ");
+            string? choice = Console.ReadLine();
+        
+            // Confirm before deleting
+            if (choice != null && choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
+            {
+                tournamentService.DeleteTournament(tournamentID);
+        
+                Console.WriteLine();
+                Console.WriteLine("Tournament Deleted Successfully!");
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Delete Operation Cancelled.");
+            }
+        
+            Pause();
+        }
 
         // Pause the screen
         private void Pause()
