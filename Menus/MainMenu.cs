@@ -1,3 +1,4 @@
+using GamingTournamentSystem.Menus;
 using GamingTournamentSystem.Models;
 using GamingTournamentSystem.Services;
 
@@ -93,14 +94,30 @@ public class MainMenu
         if (user != null)
         {
             Console.WriteLine();
-            Console.WriteLine($"Welcome {user.Username}");
+            Console.WriteLine($"Welcome {user.FullName}");
             Console.WriteLine($"Role : {user.Role}");
-        }
-        else
-        {
-            Console.WriteLine();
-            Console.WriteLine("Invalid Username or Password!");
-        }
+        
+            Pause();
+        
+            // Open Admin Dashboard after successful admin login
+            if (user.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                AdminMenu adminMenu = new AdminMenu();
+                adminMenu.Show();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Dashboard for this role is under development.");
+                Pause();
+            }
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Invalid Username or Password!");
+                Pause();
+            }
 
         Pause();
     }
