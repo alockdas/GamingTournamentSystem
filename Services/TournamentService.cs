@@ -113,7 +113,10 @@ namespace GamingTournamentSystem.Services
         // ======================================================
         // Update an existing tournament
         // ======================================================
-        public void UpdateTournament(Tournament tournament)
+        // ======================================================
+        // Update an existing tournament
+        // ======================================================
+        public bool UpdateTournament(Tournament tournament)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
             {
@@ -138,19 +141,18 @@ namespace GamingTournamentSystem.Services
                     command.Parameters.AddWithValue("@PrizePool", tournament.PrizePool);
                     command.Parameters.AddWithValue("@Status", tournament.Status);
 
-                    command.ExecuteNonQuery();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
                 }
             }
-
-            Console.WriteLine("Tournament Updated Successfully!");
         }
-
 
 
         // ======================================================
         // Delete a tournament from the database
         // ======================================================
-        public void DeleteTournament(int tournamentID)
+        public bool DeleteTournament(int tournamentID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
             {
@@ -163,11 +165,35 @@ namespace GamingTournamentSystem.Services
                 {
                     command.Parameters.AddWithValue("@TournamentID", tournamentID);
 
-                    command.ExecuteNonQuery();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    return rowsAffected > 0;
                 }
             }
+        }
 
-            Console.WriteLine("Tournament Deleted Successfully!");
+
+
+        // ======================================================
+        // Check whether a tournament exists
+        // ======================================================
+        public bool TournamentExists(int tournamentID)
+        {
+            using (MySqlConnection connection = databaseManager.GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Tournaments WHERE TournamentID = @TournamentID";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TournamentID", tournamentID);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                    return count > 0;
+                }
+            }
         }
     }
 }

@@ -4,7 +4,9 @@
 // Displays the Admin Dashboard and handles
 // all admin navigation options.
 // ======================================================
+
 using GamingTournamentSystem.Menus;
+
 namespace GamingTournamentSystem.Menus
 {
     public class AdminMenu
@@ -35,11 +37,11 @@ namespace GamingTournamentSystem.Menus
                 switch (choice)
                 {
                     case "1":
-                        TournamentMenu();
+                        OpenTournamentMenu();
                         break;
 
                     case "2":
-                        TeamMenu();
+                        OpenTeamMenu();
                         break;
 
                     case "3":
@@ -69,26 +71,27 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // Tournament Management Placeholder
+        // ======================================================
         // Open Tournament Management Menu
-        private void TournamentMenu()
+        // ======================================================
+        private void OpenTournamentMenu()
         {
             TournamentMenu tournamentMenu = new TournamentMenu();
             tournamentMenu.Show();
         }
 
-        // Team Management Placeholder
-        private void TeamMenu()
+        // ======================================================
+        // Open Team Management Menu
+        // ======================================================
+        private void OpenTeamMenu()
         {
-            Console.Clear();
-
-            Console.WriteLine("===== Team Management =====");
-            Console.WriteLine();
-            Console.WriteLine("Coming Soon...");
-            Pause();
+            TeamMenu teamMenu = new TeamMenu();
+            teamMenu.Show();
         }
 
+        // ======================================================
         // Player Management Placeholder
+        // ======================================================
         private void PlayerMenu()
         {
             Console.Clear();
@@ -99,7 +102,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
+        // ======================================================
         // Match Management Placeholder
+        // ======================================================
         private void MatchMenu()
         {
             Console.Clear();
@@ -110,7 +115,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
+        // ======================================================
         // Leaderboard Placeholder
+        // ======================================================
         private void LeaderboardMenu()
         {
             Console.Clear();
@@ -121,7 +128,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
+        // ======================================================
         // Reports Placeholder
+        // ======================================================
         private void ReportsMenu()
         {
             Console.Clear();
@@ -132,7 +141,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
+        // ======================================================
         // Pause before returning to dashboard
+        // ======================================================
         private void Pause()
         {
             Console.WriteLine();

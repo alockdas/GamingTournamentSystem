@@ -4,6 +4,7 @@
 // Handles all user interactions related to tournaments.
 // ======================================================
 
+using GamingTournamentSystem.Helpers;
 using GamingTournamentSystem.Models;
 using GamingTournamentSystem.Services;
 
@@ -76,24 +77,18 @@ namespace GamingTournamentSystem.Menus
             Console.Clear();
 
             Console.WriteLine("========== ADD TOURNAMENT ==========\n");
+            // Read validated input from the user
+            string tournamentName = InputHelper.ReadString("Tournament Name: ");
 
-            Console.Write("Tournament Name: ");
-            string tournamentName = Console.ReadLine()!;
+            string gameName = InputHelper.ReadString("Game Name: ");
 
-            Console.Write("Game Name: ");
-            string gameName = Console.ReadLine()!;
+            DateTime startDate = InputHelper.ReadDate("Start Date (yyyy-mm-dd): ");
 
-            Console.Write("Start Date (yyyy-mm-dd): ");
-            DateTime startDate = DateTime.Parse(Console.ReadLine()!);
+            DateTime endDate = InputHelper.ReadDate("End Date (yyyy-mm-dd): ");
 
-            Console.Write("End Date (yyyy-mm-dd): ");
-            DateTime endDate = DateTime.Parse(Console.ReadLine()!);
+            decimal prizePool = InputHelper.ReadDecimal("Prize Pool: ");
 
-            Console.Write("Prize Pool: ");
-            decimal prizePool = decimal.Parse(Console.ReadLine()!);
-
-            Console.Write("Status (Upcoming/Running/Completed): ");
-            string status = Console.ReadLine()!;
+            string status = InputHelper.ReadStatus();
 
             Tournament tournament = new Tournament(
                 tournamentName,
@@ -107,7 +102,6 @@ namespace GamingTournamentSystem.Menus
             tournamentService.AddTournament(tournament);
 
             Console.WriteLine();
-            Console.WriteLine("Tournament Saved Successfully!");
 
             Pause();
         }
@@ -146,18 +140,20 @@ namespace GamingTournamentSystem.Menus
             // Display each tournament
             foreach (Tournament tournament in tournaments)
             {
-                Console.WriteLine("{0,-5} {1,-25} {2,-15} {3,-12:yyyy-MM-dd} {4,-12:yyyy-MM-dd} {5,-12} {6,-12}",
+                Console.WriteLine(
+                    "{0,-5} {1,-25} {2,-15} {3,-12:yyyy-MM-dd} {4,-12:yyyy-MM-dd} {5,-12} {6,-12}",
                     tournament.TournamentID,
                     tournament.TournamentName,
                     tournament.GameName,
                     tournament.StartDate,
                     tournament.EndDate,
                     tournament.PrizePool,
-                    tournament.Status);
+                    tournament.Status
+                );
             }
 
-    Pause();
-}
+            Pause();
+            }  
 
 
 
@@ -170,29 +166,32 @@ namespace GamingTournamentSystem.Menus
 
             Console.WriteLine("========== UPDATE TOURNAMENT ==========\n");
 
-            // Ask the user which tournament to update
-            Console.Write("Enter Tournament ID: ");
-            int tournamentID = int.Parse(Console.ReadLine()!);
+            // Read Tournament ID
+            int tournamentID = InputHelper.ReadInt("Enter Tournament ID: ");
 
-            Console.Write("New Tournament Name: ");
-            string tournamentName = Console.ReadLine()!;
+            // Check if the tournament exists
+            if (!tournamentService.TournamentExists(tournamentID))
+            {
+                Console.WriteLine();
+                Console.WriteLine("Tournament ID not found!");
+                Pause();
+                return;
+            }
 
-            Console.Write("New Game Name: ");
-            string gameName = Console.ReadLine()!;
+            // Read updated information
+            string tournamentName = InputHelper.ReadString("New Tournament Name: ");
 
-            Console.Write("New Start Date (yyyy-mm-dd): ");
-            DateTime startDate = DateTime.Parse(Console.ReadLine()!);
+            string gameName = InputHelper.ReadString("New Game Name: ");
 
-            Console.Write("New End Date (yyyy-mm-dd): ");
-            DateTime endDate = DateTime.Parse(Console.ReadLine()!);
+            DateTime startDate = InputHelper.ReadDate("New Start Date (yyyy-MM-dd): ");
 
-            Console.Write("New Prize Pool: ");
-            decimal prizePool = decimal.Parse(Console.ReadLine()!);
+            DateTime endDate = InputHelper.ReadDate("New End Date (yyyy-MM-dd): ");
 
-            Console.Write("New Status (Upcoming/Running/Completed): ");
-            string status = Console.ReadLine()!;
+            decimal prizePool = InputHelper.ReadDecimal("New Prize Pool: ");
 
-            // Create a Tournament object with updated information
+            string status = InputHelper.ReadStatus();
+
+            // Create updated tournament object
             Tournament tournament = new Tournament(
                 tournamentID,
                 tournamentName,
@@ -203,15 +202,22 @@ namespace GamingTournamentSystem.Menus
                 status
             );
 
-            // Update the tournament in the database
-            tournamentService.UpdateTournament(tournament);
+            // Update tournament
+            bool updated = tournamentService.UpdateTournament(tournament);
 
             Console.WriteLine();
-            Console.WriteLine("Tournament Updated Successfully!");
+
+            if (updated)
+            {
+                Console.WriteLine("Tournament Updated Successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Update Failed!");
+            }
 
             Pause();
         }
-
 
 
         // ======================================================
@@ -224,8 +230,14 @@ namespace GamingTournamentSystem.Menus
             Console.WriteLine("========== DELETE TOURNAMENT ==========\n");
         
             // Ask the user which tournament to delete
-            Console.Write("Enter Tournament ID: ");
-            int tournamentID = int.Parse(Console.ReadLine()!);
+            int tournamentID = InputHelper.ReadInt("Enter Tournament ID: ");
+            if (!tournamentService.TournamentExists(tournamentID))
+            {
+                Console.WriteLine();
+                Console.WriteLine("Tournament ID not found!");
+                Pause();
+                return;
+            }
         
             Console.Write("\nAre you sure you want to delete this tournament? (Y/N): ");
             string? choice = Console.ReadLine();
@@ -233,10 +245,18 @@ namespace GamingTournamentSystem.Menus
             // Confirm before deleting
             if (choice != null && choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
             {
-                tournamentService.DeleteTournament(tournamentID);
-        
+                bool deleted = tournamentService.DeleteTournament(tournamentID);
+
                 Console.WriteLine();
-                Console.WriteLine("Tournament Deleted Successfully!");
+
+                if (deleted)
+                {
+                    Console.WriteLine("Tournament Deleted Successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Tournament ID not found.");
+                }
             }
             else
             {
