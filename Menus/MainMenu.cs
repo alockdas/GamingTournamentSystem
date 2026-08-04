@@ -1,4 +1,5 @@
 using GamingTournamentSystem.Menus;
+using GamingTournamentSystem.Helpers;
 using GamingTournamentSystem.Models;
 using GamingTournamentSystem.Services;
 
@@ -52,27 +53,38 @@ public class MainMenu
     
         Console.WriteLine("===== REGISTER =====");
     
-        Console.Write("Full Name: ");
-        string fullName = Console.ReadLine()!;
+        string fullName = InputHelper.ReadString("Full Name: ");
     
-        Console.Write("Username: ");
-        string username = Console.ReadLine()!;
+        string username = InputHelper.ReadString("Username: ");
     
-        Console.Write("Email: ");
-        string email = Console.ReadLine()!;
+        if (auth.UsernameExists(username))
+        {
+            Console.WriteLine();
+            Console.WriteLine("❌ Username already exists.");
+            Pause();
+            return;
+        }
     
-        Console.Write("Password: ");
-        string password = Console.ReadLine()!;
+        string email = InputHelper.ReadEmail("Email: ");
     
-        Console.Write("Role (Admin/Organizer/Player): ");
-        string role = Console.ReadLine()!;
+        if (auth.EmailExists(email))
+        {
+            Console.WriteLine();
+            Console.WriteLine("❌ Email already exists.");
+            Pause();
+            return;
+        }
+    
+        string password = InputHelper.ReadString("Password: ");
+    
+        string role = InputHelper.ReadRole();
     
         User user = new User(fullName, username, email, password, role);
     
         auth.Register(user);
     
         Console.WriteLine();
-        Console.WriteLine("Registration Complete!");
+        Console.WriteLine("✅ Registration Successful!");
     
         Pause();
     }

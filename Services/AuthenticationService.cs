@@ -39,6 +39,44 @@ namespace GamingTournamentSystem.Services
             Console.WriteLine("Registration Successful!");
         }
 
+        public bool UsernameExists(string username)
+        {
+            using (MySqlConnection connection = databaseManager.GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) FROM Users WHERE Username=@Username";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool EmailExists(string email)
+        {
+            using (MySqlConnection connection = databaseManager.GetConnection())
+            {
+                connection.Open();
+        
+                string query = "SELECT COUNT(*) FROM Users WHERE Email = @Email";
+        
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+        
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+        
+                    return count > 0;
+                }
+            }
+        }
+
         public User? Login(string username, string password)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())

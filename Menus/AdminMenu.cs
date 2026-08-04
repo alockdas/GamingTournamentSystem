@@ -45,7 +45,7 @@ namespace GamingTournamentSystem.Menus
                         break;
 
                     case "3":
-                        PlayerMenu();
+                        OpenPlayerMenu();
                         break;
 
                     case "4":
@@ -92,14 +92,10 @@ namespace GamingTournamentSystem.Menus
         // ======================================================
         // Player Management Placeholder
         // ======================================================
-        private void PlayerMenu()
+        private void OpenPlayerMenu()
         {
-            Console.Clear();
-
-            Console.WriteLine("===== Player Management =====");
-            Console.WriteLine();
-            Console.WriteLine("Coming Soon...");
-            Pause();
+            PlayerMenu playerMenu = new PlayerMenu();
+            playerMenu.Show();
         }
 
         // ======================================================
@@ -107,12 +103,8 @@ namespace GamingTournamentSystem.Menus
         // ======================================================
         private void MatchMenu()
         {
-            Console.Clear();
-
-            Console.WriteLine("===== Match Management =====");
-            Console.WriteLine();
-            Console.WriteLine("Coming Soon...");
-            Pause();
+            MatchMenu matchMenu = new MatchMenu();
+            matchMenu.Show();
         }
 
         // ======================================================
