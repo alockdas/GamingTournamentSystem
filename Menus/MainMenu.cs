@@ -92,48 +92,55 @@ public class MainMenu
     private void Login()
     {
         Console.Clear();
-
+    
         Console.WriteLine("===== LOGIN =====");
-
+    
         Console.Write("Username: ");
         string username = Console.ReadLine()!;
-
+    
         Console.Write("Password: ");
         string password = Console.ReadLine()!;
-
+    
         User? user = auth.Login(username, password);
-
-        if (user != null)
+    
+        if (user == null)
         {
             Console.WriteLine();
-            Console.WriteLine($"Welcome {user.FullName}");
-            Console.WriteLine($"Role : {user.Role}");
-        
+            Console.WriteLine("Invalid Username or Password!");
             Pause();
-        
-            // Open Admin Dashboard after successful admin login
-            if (user.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
-            {
-                AdminMenu adminMenu = new AdminMenu();
-                adminMenu.Show();
-            }
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine("Dashboard for this role is under development.");
-                Pause();
-            }
-            }
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine("Invalid Username or Password!");
-                Pause();
-            }
-
+            return;
+        }
+    
+        Console.WriteLine();
+        Console.WriteLine($"Welcome {user.FullName}");
+        Console.WriteLine($"Role : {user.Role}");
+    
         Pause();
+    
+        if (user.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+        {
+            AdminMenu adminMenu = new AdminMenu();
+            adminMenu.Show();
+        }
+        else if (user.Role.Equals("Player", StringComparison.OrdinalIgnoreCase))
+        {
+            PlayerDashboardMenu playerDashboard = new PlayerDashboardMenu();
+            playerDashboard.Show(user.UserID);
+        }
+        else if (user.Role.Equals("Organizer", StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine();
+            Console.WriteLine("Organizer Module Coming Soon...");
+            Pause();
+        }
+        else
+        {
+            Console.WriteLine();
+            Console.WriteLine("Unknown Role.");
+            Pause();
+        }
     }
-
+    
     private void Pause()
     {
         Console.WriteLine();

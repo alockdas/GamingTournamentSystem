@@ -63,7 +63,7 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+         // ======================================================
         // Add Player
         // ======================================================
         private void AddPlayer()
@@ -72,26 +72,26 @@ namespace GamingTournamentSystem.Menus
 
             Console.WriteLine("========== ADD PLAYER ==========\n");
 
-            // Show available teams
+            // Show Available Teams
             List<Team> teams = teamService.GetAllTeams();
-            
+
             if (teams.Count == 0)
             {
                 Console.WriteLine("No teams available.");
                 Pause();
                 return;
             }
-            
+
             Console.WriteLine("{0,-5} {1,-25}", "ID", "Team Name");
             Console.WriteLine(new string('-', 35));
-            
+
             foreach (Team t in teams)
             {
                 Console.WriteLine("{0,-5} {1,-25}",
                     t.TeamID,
                     t.TeamName);
             }
-            
+
             Console.WriteLine();
 
             int teamID = InputHelper.ReadInt("Team ID: ");
@@ -105,7 +105,8 @@ namespace GamingTournamentSystem.Menus
             }
 
             string fullName = InputHelper.ReadString("Full Name: ");
-            string inGameName = InputHelper.ReadString("In Game Name: ");
+
+            string username = InputHelper.ReadString("Username: ");
 
             string email = InputHelper.ReadEmail("Email: ");
 
@@ -117,15 +118,23 @@ namespace GamingTournamentSystem.Menus
                 return;
             }
 
+            string password = InputHelper.ReadString("Password: ");
+
+            string inGameName = InputHelper.ReadString("In Game Name: ");
+
             string phone = InputHelper.ReadString("Phone: ");
+
             int age = InputHelper.ReadInt("Age: ");
+
             string role = InputHelper.ReadString("Role (Captain/Player/Substitute): ");
 
             Player player = new Player(
                 teamID,
                 fullName,
-                inGameName,
+                username,
                 email,
+                password,
+                inGameName,
                 phone,
                 age,
                 role
@@ -138,7 +147,6 @@ namespace GamingTournamentSystem.Menus
 
             Pause();
         }
-
         // ======================================================
         // View Players
         // ======================================================
@@ -195,30 +203,30 @@ namespace GamingTournamentSystem.Menus
         private void UpdatePlayer()
         {
             Console.Clear();
-
+        
             Console.WriteLine("========== UPDATE PLAYER ==========\n");
-
+        
             List<Player> players = playerService.GetAllPlayers();
-
+        
             if (players.Count == 0)
             {
                 Console.WriteLine("No players found.");
                 Pause();
                 return;
             }
-
+        
             Console.WriteLine("{0,-5} {1,-20}", "ID", "Player Name");
             Console.WriteLine(new string('-', 30));
-
+        
             foreach (Player p in players)
             {
                 Console.WriteLine("{0,-5} {1,-20}", p.PlayerID, p.FullName);
             }
-
+        
             Console.WriteLine();
-
+        
             int playerID = InputHelper.ReadInt("Enter Player ID: ");
-
+        
             if (!playerService.PlayerExists(playerID))
             {
                 Console.WriteLine();
@@ -226,9 +234,12 @@ namespace GamingTournamentSystem.Menus
                 Pause();
                 return;
             }
-
+        
+            // Automatically get UserID
+            int userID = playerService.GetUserIDByPlayerID(playerID);
+        
             int teamID = InputHelper.ReadInt("Team ID: ");
-
+        
             if (!teamService.TeamExists(teamID))
             {
                 Console.WriteLine();
@@ -236,39 +247,44 @@ namespace GamingTournamentSystem.Menus
                 Pause();
                 return;
             }
-
+        
             string fullName = InputHelper.ReadString("Full Name: ");
-            string inGameName = InputHelper.ReadString("In Game Name: ");
+            string username = InputHelper.ReadString("Username: ");
             string email = InputHelper.ReadEmail("Email: ");
+            string password = InputHelper.ReadString("Password: ");
+            string inGameName = InputHelper.ReadString("In Game Name: ");
             string phone = InputHelper.ReadString("Phone: ");
             int age = InputHelper.ReadInt("Age: ");
             string role = InputHelper.ReadString("Role (Captain/Player/Substitute): ");
-
+        
             Player player = new Player(
                 playerID,
+                userID,
                 teamID,
                 fullName,
-                inGameName,
+                username,
                 email,
+                password,
+                inGameName,
                 phone,
                 age,
                 role
             );
-
+        
             bool updated = playerService.UpdatePlayer(player);
-
+        
             Console.WriteLine();
-
+        
             if (updated)
                 Console.WriteLine("Player Updated Successfully!");
             else
                 Console.WriteLine("Update Failed.");
-
+        
             Pause();
         }
 
 
-                // ======================================================
+        // ======================================================
         // Delete Player
         // ======================================================
         private void DeletePlayer()
@@ -277,31 +293,12 @@ namespace GamingTournamentSystem.Menus
 
             Console.WriteLine("========== DELETE PLAYER ==========\n");
 
-            // Show all players first
-            List<Player> players = playerService.GetAllPlayers();
-
-            if (players.Count == 0)
-            {
-                Console.WriteLine("No players found.");
-                Pause();
-                return;
-            }
-
-            Console.WriteLine("{0,-5} {1,-20}", "ID", "Player Name");
-            Console.WriteLine(new string('-', 30));
-
-            foreach (Player p in players)
-            {
-                Console.WriteLine("{0,-5} {1,-20}",
-                    p.PlayerID,
-                    p.FullName);
-            }
+            ViewPlayersWithoutPause();
 
             Console.WriteLine();
 
             int playerID = InputHelper.ReadInt("Enter Player ID: ");
 
-            // Check if player exists
             if (!playerService.PlayerExists(playerID))
             {
                 Console.WriteLine();
@@ -310,32 +307,59 @@ namespace GamingTournamentSystem.Menus
                 return;
             }
 
-            Console.Write("\nAre you sure you want to delete this player? (Y/N): ");
+            Console.Write("Are you sure? (Y/N): ");
             string? choice = Console.ReadLine();
 
-            if (choice != null &&
-                choice.Equals("Y", StringComparison.OrdinalIgnoreCase))
+            if (choice?.ToUpper() != "Y")
             {
-                bool deleted = playerService.DeletePlayer(playerID);
-
-                Console.WriteLine();
-
-                if (deleted)
-                {
-                    Console.WriteLine("Player Deleted Successfully!");
-                }
-                else
-                {
-                    Console.WriteLine("Delete Failed.");
-                }
+                Console.WriteLine("Delete Cancelled.");
+                Pause();
+                return;
             }
+
+            bool deleted = playerService.DeletePlayer(playerID);
+
+            Console.WriteLine();
+
+            if (deleted)
+                Console.WriteLine("Player Deleted Successfully!");
             else
-            {
-                Console.WriteLine();
-                Console.WriteLine("Delete Operation Cancelled.");
-            }
+                Console.WriteLine("Delete Failed.");
 
             Pause();
+        }
+
+        // ======================================================
+        // View Players Without Pause
+        // ======================================================
+        private void ViewPlayersWithoutPause()
+        {
+            List<Player> players = playerService.GetAllPlayers();
+        
+            if (players.Count == 0)
+            {
+                Console.WriteLine("No players found.");
+                return;
+            }
+        
+            Console.WriteLine(
+                "{0,-5} {1,-8} {2,-20}",
+                "ID",
+                "Team",
+                "Player Name"
+            );
+        
+            Console.WriteLine(new string('-', 40));
+        
+            foreach (Player p in players)
+            {
+                Console.WriteLine(
+                    "{0,-5} {1,-8} {2,-20}",
+                    p.PlayerID,
+                    p.TeamID,
+                    p.FullName
+                );
+            }
         }
 
         // ======================================================
