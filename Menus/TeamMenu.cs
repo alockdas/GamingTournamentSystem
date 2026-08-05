@@ -262,14 +262,19 @@ namespace GamingTournamentSystem.Menus
 
             // Create Team object
             Team team = new Team(
-                teamID,
-                tournamentID,
-                teamName,
-                captainName,
-                gameName,
-                totalPlayers,
-                coachName
-            );
+            teamID,
+            tournamentID,
+            teamName,
+            captainName,
+            gameName,
+            totalPlayers,
+            coachName,
+            0,
+            0,
+            0,
+            0,
+            0
+        );
 
             // Update the database
             bool updated = teamService.UpdateTeam(team);

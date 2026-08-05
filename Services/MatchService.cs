@@ -75,16 +75,19 @@ namespace GamingTournamentSystem.Services
                             winnerID = Convert.ToInt32(reader["WinnerTeamID"]);
 
                         Match match = new Match(
-                            Convert.ToInt32(reader["MatchID"]),
-                            Convert.ToInt32(reader["TournamentID"]),
-                            Convert.ToInt32(reader["Team1ID"]),
-                            Convert.ToInt32(reader["Team2ID"]),
-                            Convert.ToDateTime(reader["MatchDate"]),
-                            (TimeSpan)reader["MatchTime"],
-                            reader["Venue"].ToString()!,
-                            winnerID,
-                            reader["Status"].ToString()!
-                        );
+                        Convert.ToInt32(reader["MatchID"]),
+                        Convert.ToInt32(reader["TournamentID"]),
+                        Convert.ToInt32(reader["Team1ID"]),
+                        Convert.ToInt32(reader["Team2ID"]),
+                        Convert.ToDateTime(reader["MatchDate"]),
+                        (TimeSpan)reader["MatchTime"],
+                        reader["Venue"].ToString()!,
+                        winnerID,
+                        reader["Status"].ToString()!,
+                        Convert.ToBoolean(reader["IsLeaderboardUpdated"])
+                    );
+                        match.IsLeaderboardUpdated =
+                        Convert.ToBoolean(reader["IsLeaderboardUpdated"]);
 
                         matches.Add(match);
                     }
@@ -155,6 +158,24 @@ namespace GamingTournamentSystem.Services
 
                     int rowsAffected = command.ExecuteNonQuery();
 
+                    if (rowsAffected > 0 &&
+                        match.Status == "Completed" &&
+                        !match.IsLeaderboardUpdated)
+                    {
+                        UpdateLeaderboard(connection, match);
+
+                        string updateQuery = @"UPDATE Matches
+                                               SET IsLeaderboardUpdated = TRUE
+                                               WHERE MatchID=@MatchID";
+
+                        using (MySqlCommand updateCommand =
+                            new MySqlCommand(updateQuery, connection))
+                        {
+                            updateCommand.Parameters.AddWithValue("@MatchID", match.MatchID);
+                            updateCommand.ExecuteNonQuery();
+                        }
+                    }
+
                     return rowsAffected > 0;
                 }
             }
@@ -179,6 +200,43 @@ namespace GamingTournamentSystem.Services
 
                     return rowsAffected > 0;
                 }
+            }
+        }
+
+        private void UpdateLeaderboard(MySqlConnection connection, Match match)
+        {
+            int winnerID = match.WinnerTeamID!.Value;
+
+            int loserID =
+                winnerID == match.Team1ID
+                ? match.Team2ID
+                : match.Team1ID;
+
+            string winnerQuery = @"
+                UPDATE Teams
+                SET MatchesPlayed = MatchesPlayed + 1,
+                    Wins = Wins + 1,
+                    Points = Points + 3
+                WHERE TeamID=@TeamID";
+
+            using (MySqlCommand command =
+                new MySqlCommand(winnerQuery, connection))
+            {
+                command.Parameters.AddWithValue("@TeamID", winnerID);
+                command.ExecuteNonQuery();
+            }
+
+            string loserQuery = @"
+                UPDATE Teams
+                SET MatchesPlayed = MatchesPlayed + 1,
+                    Losses = Losses + 1
+                WHERE TeamID=@TeamID";
+
+            using (MySqlCommand command =
+                new MySqlCommand(loserQuery, connection))
+            {
+                command.Parameters.AddWithValue("@TeamID", loserID);
+                command.ExecuteNonQuery();
             }
         }
     }

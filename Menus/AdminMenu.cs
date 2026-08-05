@@ -53,7 +53,7 @@ namespace GamingTournamentSystem.Menus
                         break;
 
                     case "5":
-                        LeaderboardMenu();
+                        OpenLeaderboard();
                         break;
 
                     case "6":
@@ -110,17 +110,13 @@ namespace GamingTournamentSystem.Menus
         // ======================================================
         // Leaderboard Placeholder
         // ======================================================
-        private void LeaderboardMenu()
+        private void OpenLeaderboard()
         {
-            Console.Clear();
-
-            Console.WriteLine("===== Leaderboard =====");
-            Console.WriteLine();
-            Console.WriteLine("Coming Soon...");
-            Pause();
+            LeaderboardMenu leaderboardMenu = new LeaderboardMenu();
+            leaderboardMenu.Show();
         }
 
-        // ======================================================
+        // ================================ ======================
         // Reports Placeholder
         // ======================================================
         private void ReportsMenu()

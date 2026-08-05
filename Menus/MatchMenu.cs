@@ -238,15 +238,15 @@ namespace GamingTournamentSystem.Menus
         private void UpdateMatch()
         {
             Console.Clear();
-
+        
             Console.WriteLine("========== UPDATE MATCH ==========\n");
-
+        
             ViewMatchesWithoutPause();
-
+        
             Console.WriteLine();
-
+        
             int matchID = InputHelper.ReadInt("Enter Match ID: ");
-
+        
             if (!matchService.MatchExists(matchID))
             {
                 Console.WriteLine();
@@ -254,9 +254,9 @@ namespace GamingTournamentSystem.Menus
                 Pause();
                 return;
             }
-
+        
             int tournamentID = InputHelper.ReadInt("Tournament ID: ");
-
+        
             if (!tournamentService.TournamentExists(tournamentID))
             {
                 Console.WriteLine();
@@ -264,10 +264,10 @@ namespace GamingTournamentSystem.Menus
                 Pause();
                 return;
             }
-
+        
             int team1ID = InputHelper.ReadInt("Team 1 ID: ");
             int team2ID = InputHelper.ReadInt("Team 2 ID: ");
-
+        
             if (team1ID == team2ID)
             {
                 Console.WriteLine();
@@ -275,41 +275,85 @@ namespace GamingTournamentSystem.Menus
                 Pause();
                 return;
             }
-
-            if (!teamService.TeamExists(team1ID) ||
-                !teamService.TeamExists(team2ID))
+        
+            if (!teamService.TeamExists(team1ID))
             {
                 Console.WriteLine();
-                Console.WriteLine("One or both Team IDs are invalid.");
+                Console.WriteLine("Team 1 not found.");
                 Pause();
                 return;
             }
-
+        
+            if (!teamService.TeamExists(team2ID))
+            {
+                Console.WriteLine();
+                Console.WriteLine("Team 2 not found.");
+                Pause();
+                return;
+            }
+        
             DateTime matchDate =
                 InputHelper.ReadDate("Match Date (yyyy-mm-dd): ");
-
+        
             TimeSpan matchTime =
                 InputHelper.ReadTime("Match Time (HH:mm): ");
-
+        
             string venue =
                 InputHelper.ReadString("Venue: ");
-
-            Console.Write("Winner Team ID (Leave blank if none): ");
-            string? winnerInput = Console.ReadLine();
-
-            int? winnerID = null;
-
-            if (!string.IsNullOrWhiteSpace(winnerInput))
+        
+            // Read Match Status
+            string status;
+        
+            while (true)
             {
-                if (int.TryParse(winnerInput, out int id))
+                Console.Write("Status (Scheduled/Ongoing/Completed): ");
+        
+                status = Console.ReadLine()!.Trim();
+        
+                if (status.Equals("Scheduled", StringComparison.OrdinalIgnoreCase))
                 {
-                    winnerID = id;
+                    status = "Scheduled";
+                    break;
+                }
+        
+                if (status.Equals("Ongoing", StringComparison.OrdinalIgnoreCase))
+                {
+                    status = "Ongoing";
+                    break;
+                }
+        
+                if (status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
+                {
+                    status = "Completed";
+                    break;
+                }
+        
+                Console.WriteLine("Invalid Status.");
+            }
+        
+            // Winner is required only if the match is completed
+            int? winnerID = null;
+        
+            if (status == "Completed")
+            {
+                Console.WriteLine();
+                Console.WriteLine("Available Teams");
+                Console.WriteLine("----------------");
+                Console.WriteLine($"Team 1 ID : {team1ID}");
+                Console.WriteLine($"Team 2 ID : {team2ID}");
+                Console.WriteLine();
+        
+                winnerID = InputHelper.ReadInt("Winner Team ID: ");
+        
+                if (winnerID != team1ID && winnerID != team2ID)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Winner must be either Team 1 or Team 2.");
+                    Pause();
+                    return;
                 }
             }
-
-            string status =
-                InputHelper.ReadString("Status (Scheduled/Ongoing/Completed): ");
-
+        
             Match match = new Match(
                 matchID,
                 tournamentID,
@@ -321,16 +365,23 @@ namespace GamingTournamentSystem.Menus
                 winnerID,
                 status
             );
-
+        
             bool updated = matchService.UpdateMatch(match);
-
+        
             Console.WriteLine();
-
+        
             if (updated)
+            {
                 Console.WriteLine("Match Updated Successfully!");
+        
+                // Leaderboard update will be added here later
+                // leaderboardService.UpdateLeaderboard(match);
+            }
             else
+            {
                 Console.WriteLine("Update Failed.");
-
+            }
+        
             Pause();
         }
 

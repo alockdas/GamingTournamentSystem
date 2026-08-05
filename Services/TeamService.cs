@@ -49,13 +49,13 @@ namespace GamingTournamentSystem.Services
         public List<Team> GetAllTeams()
         {
             List<Team> teams = new List<Team>();
-
+        
             using (MySqlConnection connection = databaseManager.GetConnection())
             {
                 connection.Open();
-
+        
                 string query = "SELECT * FROM Teams";
-
+        
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
@@ -68,14 +68,19 @@ namespace GamingTournamentSystem.Services
                             reader["CaptainName"].ToString()!,
                             reader["GameName"].ToString()!,
                             Convert.ToInt32(reader["TotalPlayers"]),
-                            reader["CoachName"].ToString()!
+                            reader["CoachName"].ToString()!,
+                            Convert.ToInt32(reader["MatchesPlayed"]),
+                            Convert.ToInt32(reader["Wins"]),
+                            Convert.ToInt32(reader["Losses"]),
+                            Convert.ToInt32(reader["Draws"]),
+                            Convert.ToInt32(reader["Points"])
                         );
-
+        
                         teams.Add(team);
                     }
                 }
             }
-
+        
             return teams;
         }
 
@@ -145,15 +150,15 @@ namespace GamingTournamentSystem.Services
             using (MySqlConnection connection = databaseManager.GetConnection())
             {
                 connection.Open();
-        
+
                 string query = "DELETE FROM Teams WHERE TeamID = @TeamID";
-        
+
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@TeamID", teamID);
-        
+
                     int rowsAffected = command.ExecuteNonQuery();
-        
+
                     return rowsAffected > 0;
                 }
             }
