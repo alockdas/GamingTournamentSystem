@@ -57,7 +57,7 @@ namespace GamingTournamentSystem.Menus
                         break;
 
                     case "6":
-                        ReportsMenu();
+                        OpenReportsMenu();
                         break;
 
                     case "7":
@@ -119,14 +119,10 @@ namespace GamingTournamentSystem.Menus
         // ================================ ======================
         // Reports Placeholder
         // ======================================================
-        private void ReportsMenu()
+        private void OpenReportsMenu()
         {
-            Console.Clear();
-
-            Console.WriteLine("===== Reports =====");
-            Console.WriteLine();
-            Console.WriteLine("Coming Soon...");
-            Pause();
+            ReportsMenu reportsMenu = new ReportsMenu();
+            reportsMenu.Show();
         }
 
         // ======================================================
