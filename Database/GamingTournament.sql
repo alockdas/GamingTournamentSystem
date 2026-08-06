@@ -14,14 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
-SET @@SESSION.SQL_LOG_BIN= 0;
-
---
--- GTID state at the beginning of the backup 
---
-
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'e79ffb8c-d64f-11f0-ae3d-b42fd18a41a6:1-194';
 
 --
 -- Table structure for table `Matches`
@@ -59,7 +51,6 @@ CREATE TABLE `Matches` (
 
 LOCK TABLES `Matches` WRITE;
 /*!40000 ALTER TABLE `Matches` DISABLE KEYS */;
-INSERT INTO `Matches` VALUES (1,2,3,5,'2026-08-30','72:00:00','AIUB',3,'Completed',1),(2,3,5,6,'2001-08-26','72:00:00','AIUB',NULL,'Completed',0);
 /*!40000 ALTER TABLE `Matches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +86,6 @@ CREATE TABLE `Players` (
 
 LOCK TABLES `Players` WRITE;
 /*!40000 ALTER TABLE `Players` DISABLE KEYS */;
-INSERT INTO `Players` VALUES (1,3,'Alock Das','Fifa','alockdas@gmail.com','01608919298',21,'Captain',NULL),(2,3,'Alock','Fifa','a@gmail.com','01608919298',21,'Player',7);
 /*!40000 ALTER TABLE `Players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +122,6 @@ CREATE TABLE `Teams` (
 
 LOCK TABLES `Teams` WRITE;
 /*!40000 ALTER TABLE `Teams` DISABLE KEYS */;
-INSERT INTO `Teams` VALUES (3,2,'Brazil','alock','Fifa',10,'alock','2026-08-04 11:53:44',1,1,0,0,3),(5,2,'A','A','Fifa',3,'A','2026-08-04 17:46:39',1,0,1,0,0),(6,3,'B','B','Fifa',10,'B','2026-08-04 18:13:53',0,0,0,0,0);
 /*!40000 ALTER TABLE `Teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +150,6 @@ CREATE TABLE `Tournaments` (
 
 LOCK TABLES `Tournaments` WRITE;
 /*!40000 ALTER TABLE `Tournaments` DISABLE KEYS */;
-INSERT INTO `Tournaments` VALUES (2,'AIUB Football World Cup','Fifa','2026-08-01','2026-08-30',50000.00,'Running'),(3,'AIUB Summer Cup ','Valorant','2026-08-10','2026-08-30',10000.00,'Upcoming');
 /*!40000 ALTER TABLE `Tournaments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +170,7 @@ CREATE TABLE `Users` (
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Username` (`Username`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,10 +179,9 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'Alock Das Joy','alock','alockdasjoy302@gmail.com','1234','Admin'),(4,'Alock','alock1','alockdasjoy508@gmail.com','1234','Organizer'),(5,'','','','1234','Admin'),(6,'Alock','alock2','alockdasjoy','1234','Player'),(7,'Alock','alock3','a@gmail.com','1234','Player'),(8,'System Administrator','admin','admin@gmail.com','1234','Admin');
+INSERT INTO `Users` VALUES (1,'System Administrator','admin','admin@gmail.com','1234','Admin');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
-SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -205,4 +192,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-08-06 10:36:21
+-- Dump completed on 2026-08-06 11:41:18
