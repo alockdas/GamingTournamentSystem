@@ -1,13 +1,14 @@
-﻿using GamingTournamentSystem.Menus;
+﻿using GamingTournamentSystem.Forms;
 
 namespace GamingTournamentSystem
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
-            MainMenu menu = new MainMenu();
-            menu.Show();
+            ApplicationConfiguration.Initialize();
+            Application.Run(new LoginForm());
         }
     }
 }
