@@ -13,17 +13,27 @@ namespace GamingTournamentSystem.Forms
         {
             InitializeComponent();
 
-            authenticationService = new AuthenticationService();
+            authenticationService =
+                new AuthenticationService();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text;
+        // =====================================================
+        // LOGIN
+        // =====================================================
 
-            // =========================
-            // Validation
-            // =========================
+        private void btnLogin_Click(
+            object? sender,
+            EventArgs e)
+        {
+            string username =
+                txtUsername.Text.Trim();
+
+            string password =
+                txtPassword.Text;
+
+            // =================================================
+            // VALIDATION
+            // =================================================
 
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -34,6 +44,7 @@ namespace GamingTournamentSystem.Forms
                     MessageBoxIcon.Warning);
 
                 txtUsername.Focus();
+
                 return;
             }
 
@@ -46,72 +57,27 @@ namespace GamingTournamentSystem.Forms
                     MessageBoxIcon.Warning);
 
                 txtPassword.Focus();
+
                 return;
             }
 
             try
             {
-                // =========================
-                // Backend Login
-                // =========================
+                // =================================================
+                // DATABASE LOGIN
+                // =================================================
 
-                User? user = authenticationService.Login(
-                    username,
-                    password);
+                User? user =
+                    authenticationService.Login(
+                        username,
+                        password);
 
-                // =========================
-                // Login Successful
-                // =========================
+                // =================================================
+                // INVALID LOGIN
+                // =================================================
 
-                if (user != null)
+                if (user == null)
                 {
-                    MessageBox.Show(
-                        $"Welcome, {user.FullName}!\nRole: {user.Role}",
-                        "Login Successful",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-                    // =========================
-                    // ADMIN LOGIN
-                    // =========================
-
-                    if (user.Role.Equals(
-                        "Admin",
-                        StringComparison.OrdinalIgnoreCase))
-                    {
-                        AdminDashboard dashboard =
-                            new AdminDashboard(user);
-
-                        // When Dashboard closes,
-                        // close the LoginForm as well.
-                        dashboard.FormClosed +=
-                            (s, args) => this.Close();
-
-                        // Show Dashboard
-                        dashboard.Show();
-
-                        // Hide Login Form
-                        this.Hide();
-                    }
-                    else
-                    {
-                        // =========================
-                        // NORMAL USER LOGIN
-                        // =========================
-
-                        MessageBox.Show(
-                            "User Dashboard is not available yet.",
-                            "Information",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    // =========================
-                    // Login Failed
-                    // =========================
-
                     MessageBox.Show(
                         "Invalid username or password.",
                         "Login Failed",
@@ -119,15 +85,83 @@ namespace GamingTournamentSystem.Forms
                         MessageBoxIcon.Error);
 
                     txtPassword.Clear();
+
                     txtPassword.Focus();
+
+                    return;
                 }
+
+                // =================================================
+                // ADMIN
+                // =================================================
+
+                if (user.Role.Equals(
+                    "Admin",
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    AdminDashboard dashboard =
+                        new AdminDashboard(user);
+
+                    dashboard.FormClosed +=
+                        (s, args) => this.Close();
+
+                    dashboard.Show();
+
+                    this.Hide();
+
+                    return;
+                }
+
+                // =================================================
+                // PLAYER
+                // =================================================
+
+                if (user.Role.Equals(
+                    "Player",
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    PlayerDashboard dashboard =
+                        new PlayerDashboard(user);
+
+                    dashboard.FormClosed +=
+                        (s, args) => this.Close();
+
+                    dashboard.Show();
+
+                    this.Hide();
+
+                    return;
+                }
+
+                // =================================================
+                // ORGANIZER
+                // =================================================
+
+                if (user.Role.Equals(
+                    "Organizer",
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show(
+                        "Organizer Dashboard is not available yet.",
+                        "Information",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+
+                // =================================================
+                // UNKNOWN ROLE
+                // =================================================
+
+                MessageBox.Show(
+                    "Unknown user role.",
+                    "Login Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                // =========================
-                // Database / Login Error
-                // =========================
-
                 MessageBox.Show(
                     "Unable to connect to the database or login.\n\n" +
                     "Error: " + ex.Message,
@@ -137,31 +171,35 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================
-        // EXIT BUTTON
-        // =========================
+        // =====================================================
+        // EXIT
+        // =====================================================
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnExit_Click(
+            object? sender,
+            EventArgs e)
         {
             Application.Exit();
         }
 
-        // =========================
-        // LOGO CLICK
-        // =========================
+        // =====================================================
+        // LOGO
+        // =====================================================
 
-        private void lblLogo_Click(object sender, EventArgs e)
+        private void lblLogo_Click(
+            object? sender,
+            EventArgs e)
         {
-            // No action required
         }
 
-        // =========================
-        // DESCRIPTION CLICK
-        // =========================
+        // =====================================================
+        // DESCRIPTION
+        // =====================================================
 
-        private void lblDesc_Click(object sender, EventArgs e)
+        private void lblDesc_Click(
+            object? sender,
+            EventArgs e)
         {
-            // No action required
         }
     }
 }

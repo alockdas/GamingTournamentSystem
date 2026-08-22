@@ -1,4 +1,4 @@
-namespace GamingTournamentSystem.Forms
+﻿namespace GamingTournamentSystem.Forms
 {
     partial class LoginForm
     {
@@ -50,7 +50,7 @@ namespace GamingTournamentSystem.Forms
             txtUsername = new TextBox();
             lblUsername = new Label();
             lblLoginHeader = new Label();
-            lblLogo = new Label();
+            label1 = new Label();
             pnlLeftBranding.SuspendLayout();
             pnlRightLogin.SuspendLayout();
             cardLogin.SuspendLayout();
@@ -59,10 +59,10 @@ namespace GamingTournamentSystem.Forms
             // pnlLeftBranding
             // 
             pnlLeftBranding.BackColor = Color.White;
+            pnlLeftBranding.Controls.Add(label1);
             pnlLeftBranding.Controls.Add(lblDesc);
             pnlLeftBranding.Controls.Add(lblSubtitle);
             pnlLeftBranding.Controls.Add(lblMainTitle);
-            pnlLeftBranding.Controls.Add(lblLogo);
             pnlLeftBranding.Dock = DockStyle.Left;
             pnlLeftBranding.Location = new Point(0, 0);
             pnlLeftBranding.Margin = new Padding(3, 4, 3, 4);
@@ -125,7 +125,7 @@ namespace GamingTournamentSystem.Forms
             lblFooter.Name = "lblFooter";
             lblFooter.Size = new Size(525, 54);
             lblFooter.TabIndex = 0;
-            lblFooter.Text = "� 2026 Gaming Tournament System";
+            lblFooter.Text = "© 2026 Gaming Tournament System";
             lblFooter.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // cardLogin
@@ -227,17 +227,16 @@ namespace GamingTournamentSystem.Forms
             lblLoginHeader.Text = "User Login";
             lblLoginHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblLogo
+            // label1
             // 
-            lblLogo.Font = new Font("Segoe UI Emoji", 60F);
-            lblLogo.ForeColor = Color.FromArgb(30, 109, 235);
-            lblLogo.Location = new Point(149, 100);
-            lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(229, 175);
-            lblLogo.TabIndex = 3;
-            lblLogo.Text = "??";
-            lblLogo.TextAlign = ContentAlignment.MiddleCenter;
-            lblLogo.Click += lblLogo_Click;
+            label1.Font = new Font("Segoe UI Emoji", 22F);
+            label1.ForeColor = Color.FromArgb(30, 109, 235);
+            label1.Location = new Point(187, 211);
+            label1.Name = "label1";
+            label1.Size = new Size(121, 61);
+            label1.TabIndex = 4;
+            label1.Text = "🎮";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LoginForm
             // 
@@ -258,6 +257,6 @@ namespace GamingTournamentSystem.Forms
             cardLogin.PerformLayout();
             ResumeLayout(false);
         }
-        private Label lblLogo;
+        private Label label1;
     }
 }
