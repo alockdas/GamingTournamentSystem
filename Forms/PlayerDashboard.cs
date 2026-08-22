@@ -199,7 +199,7 @@ namespace GamingTournamentSystem.Forms
             lblPageTitle.Text = "Tournaments";
 
             lblWelcome.Text =
-                "View all available tournaments.";
+                "View your assigned tournament.";
 
             LoadTournaments();
         }
@@ -210,113 +210,205 @@ namespace GamingTournamentSystem.Forms
             {
                 pnlContent.Controls.Clear();
 
-                var tournaments =
-                    dashboardService.GetTournaments();
-
-                Label heading = CreateContentTitle(
-                    "Available Tournaments");
+                Label heading =
+                    CreateContentTitle("My Tournament");
 
                 pnlContent.Controls.Add(heading);
 
-                if (tournaments.Count == 0)
+                // =================================================
+                // GET PLAYER'S ASSIGNED TEAM
+                // =================================================
+
+                TeamInfo? team =
+                    dashboardService.GetMyTeam(
+                        currentUser.UserID);
+
+                // =================================================
+                // NO TEAM / NO TOURNAMENT
+                // =================================================
+
+                if (team == null)
                 {
                     AddNoDataMessage(
-                        "No tournaments are available currently.",
+                        "You are not assigned to any tournament.",
                         20,
                         65);
 
                     return;
                 }
 
-                int y = 65;
+                // =================================================
+                // TOURNAMENT CARD
+                // =================================================
 
-                foreach (var tournament in tournaments)
+                Panel card = new Panel
                 {
-                    Panel card = new Panel
-                    {
-                        BackColor = Color.White,
-                        Location = new Point(20, y),
-                        Size = new Size(860, 125),
-                        BorderStyle =
-                            BorderStyle.FixedSingle
-                    };
+                    BackColor = Color.White,
+                    Location = new Point(20, 65),
+                    Size = new Size(860, 180),
+                    BorderStyle =
+                        BorderStyle.FixedSingle
+                };
 
-                    Label name = new Label
-                    {
-                        Text = tournament.TournamentName,
-                        Font = new Font(
-                            "Segoe UI",
-                            13F,
-                            FontStyle.Bold),
-                        ForeColor =
-                            Color.FromArgb(33, 37, 41),
-                        Location =
-                            new Point(20, 15),
-                        AutoSize = true
-                    };
+                // =================================================
+                // TOURNAMENT NAME
+                // =================================================
 
-                    Label game = new Label
-                    {
-                        Text =
-                            $"Game: {tournament.GameName}",
-                        Font =
-                            new Font("Segoe UI", 9.5F),
-                        Location =
-                            new Point(20, 48),
-                        AutoSize = true
-                    };
+                Label name = new Label
+                {
+                    Text = team.TournamentName,
+                    Font = new Font(
+                        "Segoe UI",
+                        15F,
+                        FontStyle.Bold),
+                    ForeColor =
+                        Color.FromArgb(33, 37, 41),
+                    Location =
+                        new Point(20, 15),
+                    AutoSize = true
+                };
 
-                    Label dates = new Label
-                    {
-                        Text =
-                            $"Date: {tournament.StartDate:dd MMM yyyy} - {tournament.EndDate:dd MMM yyyy}",
-                        Font =
-                            new Font("Segoe UI", 9.5F),
-                        Location =
-                            new Point(20, 76),
-                        AutoSize = true
-                    };
+                // =================================================
+                // GAME
+                // =================================================
 
-                    Label prize = new Label
-                    {
-                        Text =
-                            $"Prize Pool: ${tournament.PrizePool:N2}",
-                        Font =
-                            new Font(
-                                "Segoe UI",
-                                9.5F,
-                                FontStyle.Bold),
-                        Location =
-                            new Point(400, 48),
-                        AutoSize = true
-                    };
+                Label game = new Label
+                {
+                    Text =
+                        $"Game: {team.GameName}",
+                    Font = new Font(
+                        "Segoe UI",
+                        10F),
+                    ForeColor =
+                        Color.FromArgb(
+                            108,
+                            117,
+                            125),
+                    Location =
+                        new Point(20, 55),
+                    AutoSize = true
+                };
 
-                    Label status = new Label
-                    {
-                        Text =
-                            $"Status: {tournament.Status}",
-                        Font =
-                            new Font(
-                                "Segoe UI",
-                                9.5F,
-                                FontStyle.Bold),
-                        ForeColor =
-                            Color.FromArgb(30, 109, 235),
-                        Location =
-                            new Point(400, 76),
-                        AutoSize = true
-                    };
+                // =================================================
+                // MY TEAM
+                // =================================================
 
-                    card.Controls.Add(name);
-                    card.Controls.Add(game);
-                    card.Controls.Add(dates);
-                    card.Controls.Add(prize);
-                    card.Controls.Add(status);
+                Label teamName = new Label
+                {
+                    Text =
+                        $"My Team: {team.TeamName}",
+                    Font = new Font(
+                        "Segoe UI",
+                        10F,
+                        FontStyle.Bold),
+                    ForeColor =
+                        Color.FromArgb(
+                            33,
+                            37,
+                            41),
+                    Location =
+                        new Point(20, 85),
+                    AutoSize = true
+                };
 
-                    pnlContent.Controls.Add(card);
+                // =================================================
+                // CAPTAIN
+                // =================================================
 
-                    y += 140;
-                }
+                Label captain = new Label
+                {
+                    Text =
+                        $"Captain: {team.CaptainName}",
+                    Font = new Font(
+                        "Segoe UI",
+                        9.5F),
+                    ForeColor =
+                        Color.FromArgb(
+                            33,
+                            37,
+                            41),
+                    Location =
+                        new Point(20, 115),
+                    AutoSize = true
+                };
+
+                // =================================================
+                // PLAYERS
+                // =================================================
+
+                Label players = new Label
+                {
+                    Text =
+                        $"Players: {team.TotalPlayers}",
+                    Font = new Font(
+                        "Segoe UI",
+                        9.5F),
+                    ForeColor =
+                        Color.FromArgb(
+                            33,
+                            37,
+                            41),
+                    Location =
+                        new Point(300, 115),
+                    AutoSize = true
+                };
+
+                // =================================================
+                // POINTS
+                // =================================================
+
+                Label points = new Label
+                {
+                    Text =
+                        $"Points: {team.Points}",
+                    Font = new Font(
+                        "Segoe UI",
+                        9.5F,
+                        FontStyle.Bold),
+                    ForeColor =
+                        Color.FromArgb(
+                            30,
+                            109,
+                            235),
+                    Location =
+                        new Point(500, 115),
+                    AutoSize = true
+                };
+
+                // =================================================
+                // MATCHES
+                // =================================================
+
+                Label matches = new Label
+                {
+                    Text =
+                        $"Matches Played: {team.MatchesPlayed}",
+                    Font = new Font(
+                        "Segoe UI",
+                        9.5F),
+                    ForeColor =
+                        Color.FromArgb(
+                            33,
+                            37,
+                            41),
+                    Location =
+                        new Point(20, 145),
+                    AutoSize = true
+                };
+
+                // =================================================
+                // ADD CONTROLS
+                // =================================================
+
+                card.Controls.Add(name);
+                card.Controls.Add(game);
+                card.Controls.Add(teamName);
+                card.Controls.Add(captain);
+                card.Controls.Add(players);
+                card.Controls.Add(points);
+                card.Controls.Add(matches);
+
+                pnlContent.Controls.Add(card);
             }
             catch (Exception ex)
             {
@@ -372,7 +464,8 @@ namespace GamingTournamentSystem.Forms
                     BackColor = Color.White,
                     Location = new Point(20, 65),
                     Size = new Size(700, 360),
-                    BorderStyle = BorderStyle.FixedSingle
+                    BorderStyle =
+                        BorderStyle.FixedSingle
                 };
 
                 Label teamName = new Label
@@ -383,8 +476,12 @@ namespace GamingTournamentSystem.Forms
                         18F,
                         FontStyle.Bold),
                     ForeColor =
-                        Color.FromArgb(30, 109, 235),
-                    Location = new Point(30, 25),
+                        Color.FromArgb(
+                            30,
+                            109,
+                            235),
+                    Location =
+                        new Point(30, 25),
                     AutoSize = true
                 };
 
@@ -490,8 +587,10 @@ namespace GamingTournamentSystem.Forms
                     Panel card = new Panel
                     {
                         BackColor = Color.White,
-                        Location = new Point(20, y),
-                        Size = new Size(860, 135),
+                        Location =
+                            new Point(20, y),
+                        Size =
+                            new Size(860, 135),
                         BorderStyle =
                             BorderStyle.FixedSingle
                     };
@@ -521,7 +620,9 @@ namespace GamingTournamentSystem.Forms
                                 FontStyle.Bold),
                         ForeColor =
                             Color.FromArgb(
-                                30, 109, 235),
+                                30,
+                                109,
+                                235),
                         Location =
                             new Point(20, 48),
                         AutoSize = true
@@ -567,7 +668,9 @@ namespace GamingTournamentSystem.Forms
                                 FontStyle.Bold),
                         ForeColor =
                             Color.FromArgb(
-                                30, 109, 235)
+                                30,
+                                109,
+                                235)
                     };
 
                     Label winner = new Label
@@ -644,24 +747,64 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // Header
+                // =================================================
+                // HEADER
+                // =================================================
+
                 Panel header = new Panel
                 {
                     BackColor =
-                        Color.FromArgb(30, 109, 235),
+                        Color.FromArgb(
+                            30,
+                            109,
+                            235),
                     Location =
                         new Point(20, 65),
                     Size =
                         new Size(860, 45)
                 };
 
-                AddHeaderLabel(header, "#", 10, 120);
-                AddHeaderLabel(header, "Team", 60, 200);
-                AddHeaderLabel(header, "Game", 270, 150);
-                AddHeaderLabel(header, "Played", 430, 80);
-                AddHeaderLabel(header, "Wins", 515, 70);
-                AddHeaderLabel(header, "Loss", 590, 70);
-                AddHeaderLabel(header, "Points", 665, 100);
+                AddHeaderLabel(
+                    header,
+                    "#",
+                    10,
+                    120);
+
+                AddHeaderLabel(
+                    header,
+                    "Team",
+                    60,
+                    200);
+
+                AddHeaderLabel(
+                    header,
+                    "Game",
+                    270,
+                    150);
+
+                AddHeaderLabel(
+                    header,
+                    "Played",
+                    430,
+                    80);
+
+                AddHeaderLabel(
+                    header,
+                    "Wins",
+                    515,
+                    70);
+
+                AddHeaderLabel(
+                    header,
+                    "Loss",
+                    590,
+                    70);
+
+                AddHeaderLabel(
+                    header,
+                    "Points",
+                    665,
+                    100);
 
                 pnlContent.Controls.Add(header);
 
@@ -672,8 +815,10 @@ namespace GamingTournamentSystem.Forms
                     Panel row = new Panel
                     {
                         BackColor = Color.White,
-                        Location = new Point(20, y),
-                        Size = new Size(860, 45),
+                        Location =
+                            new Point(20, y),
+                        Size =
+                            new Size(860, 45),
                         BorderStyle =
                             BorderStyle.FixedSingle
                     };
@@ -761,8 +906,10 @@ namespace GamingTournamentSystem.Forms
             Panel card = new Panel
             {
                 BackColor = Color.White,
-                Location = new Point(20, 65),
-                Size = new Size(700, 360),
+                Location =
+                    new Point(20, 65),
+                Size =
+                    new Size(700, 360),
                 BorderStyle =
                     BorderStyle.FixedSingle
             };
@@ -770,12 +917,16 @@ namespace GamingTournamentSystem.Forms
             Label profileTitle = new Label
             {
                 Text = "Account Information",
-                Font = new Font(
-                    "Segoe UI",
-                    16F,
-                    FontStyle.Bold),
+                Font =
+                    new Font(
+                        "Segoe UI",
+                        16F,
+                        FontStyle.Bold),
                 ForeColor =
-                    Color.FromArgb(33, 37, 41),
+                    Color.FromArgb(
+                        33,
+                        37,
+                        41),
                 Location =
                     new Point(30, 25),
                 AutoSize = true
@@ -855,7 +1006,8 @@ namespace GamingTournamentSystem.Forms
         // ACTIVE BUTTON
         // =====================================================
 
-        private void SetActiveButton(Button activeButton)
+        private void SetActiveButton(
+            Button activeButton)
         {
             Button[] buttons =
             {
@@ -869,13 +1021,21 @@ namespace GamingTournamentSystem.Forms
 
             foreach (Button button in buttons)
             {
-                button.BackColor = Color.White;
+                button.BackColor =
+                    Color.White;
+
                 button.ForeColor =
-                    Color.FromArgb(33, 37, 41);
+                    Color.FromArgb(
+                        33,
+                        37,
+                        41);
             }
 
             activeButton.BackColor =
-                Color.FromArgb(30, 109, 235);
+                Color.FromArgb(
+                    30,
+                    109,
+                    235);
 
             activeButton.ForeColor =
                 Color.White;
@@ -895,8 +1055,10 @@ namespace GamingTournamentSystem.Forms
             Panel card = new Panel
             {
                 BackColor = Color.White,
-                Location = new Point(x, 20),
-                Size = new Size(205, 150),
+                Location =
+                    new Point(x, 20),
+                Size =
+                    new Size(205, 150),
                 BorderStyle =
                     BorderStyle.FixedSingle
             };
@@ -939,7 +1101,9 @@ namespace GamingTournamentSystem.Forms
                         FontStyle.Bold),
                 ForeColor =
                     Color.FromArgb(
-                        30, 109, 235),
+                        30,
+                        109,
+                        235),
                 Location =
                     new Point(15, 68),
                 AutoSize = true
@@ -954,7 +1118,9 @@ namespace GamingTournamentSystem.Forms
                         8.5F),
                 ForeColor =
                     Color.FromArgb(
-                        108, 117, 125),
+                        108,
+                        117,
+                        125),
                 Location =
                     new Point(15, 110),
                 AutoSize = true
@@ -972,7 +1138,8 @@ namespace GamingTournamentSystem.Forms
         // CONTENT TITLE
         // =====================================================
 
-        private Label CreateContentTitle(string text)
+        private Label CreateContentTitle(
+            string text)
         {
             return new Label
             {
@@ -984,7 +1151,9 @@ namespace GamingTournamentSystem.Forms
                         FontStyle.Bold),
                 ForeColor =
                     Color.FromArgb(
-                        33, 37, 41),
+                        33,
+                        37,
+                        41),
                 Location =
                     new Point(20, 20),
                 AutoSize = true
@@ -1011,7 +1180,9 @@ namespace GamingTournamentSystem.Forms
                         FontStyle.Bold),
                 ForeColor =
                     Color.FromArgb(
-                        73, 80, 87),
+                        73,
+                        80,
+                        87),
                 Location =
                     new Point(30, y),
                 Size =
@@ -1027,7 +1198,9 @@ namespace GamingTournamentSystem.Forms
                         9.5F),
                 ForeColor =
                     Color.FromArgb(
-                        33, 37, 41),
+                        33,
+                        37,
+                        41),
                 Location =
                     new Point(175, y),
                 Size =
@@ -1056,7 +1229,9 @@ namespace GamingTournamentSystem.Forms
                         10F),
                 ForeColor =
                     Color.FromArgb(
-                        108, 117, 125),
+                        108,
+                        117,
+                        125),
                 Location =
                     new Point(x, y),
                 AutoSize = true
@@ -1112,7 +1287,9 @@ namespace GamingTournamentSystem.Forms
                         8.5F),
                 ForeColor =
                     Color.FromArgb(
-                        33, 37, 41),
+                        33,
+                        37,
+                        41),
                 Location =
                     new Point(x, 12),
                 Size =
@@ -1126,11 +1303,13 @@ namespace GamingTournamentSystem.Forms
         // DATABASE ERROR
         // =====================================================
 
-        private void ShowDatabaseError(Exception ex)
+        private void ShowDatabaseError(
+            Exception ex)
         {
             MessageBox.Show(
                 "Unable to load dashboard data.\n\n" +
-                "Error: " + ex.Message,
+                "Error: " +
+                ex.Message,
                 "Database Error",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);

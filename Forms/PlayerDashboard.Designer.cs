@@ -369,6 +369,34 @@
                 340);
 
             // =====================================================
+            // BUTTON CLICK EVENTS
+            // =====================================================
+
+            this.btnDashboard.Click +=
+                new System.EventHandler(
+                    this.btnDashboard_Click);
+
+            this.btnTournaments.Click +=
+                new System.EventHandler(
+                    this.btnTournaments_Click);
+
+            this.btnMyTeam.Click +=
+                new System.EventHandler(
+                    this.btnMyTeam_Click);
+
+            this.btnMatches.Click +=
+                new System.EventHandler(
+                    this.btnMatches_Click);
+
+            this.btnLeaderboard.Click +=
+                new System.EventHandler(
+                    this.btnLeaderboard_Click);
+
+            this.btnProfile.Click +=
+                new System.EventHandler(
+                    this.btnProfile_Click);
+
+            // =====================================================
             // Active Dashboard Button
             // =====================================================
 
