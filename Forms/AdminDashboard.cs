@@ -271,52 +271,57 @@ namespace GamingTournamentSystem.Forms
         // Player Management
         // =========================================================
         // =========================================================
-        // Player Management
-        // =========================================================
-        private void btnNavPlayer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SetSelectedButton(btnNavPlayer);
+// Player Management
+// =========================================================
+private void btnNavPlayer_Click(object sender, EventArgs e)
+{
+    try
+    {
+        SetSelectedButton(btnNavPlayer);
 
-                PlayerForm playerForm =
-                    new PlayerForm(this);
+        PlayerForm playerForm =
+            new PlayerForm(this);
 
-                playerForm.Show();
+        playerForm.Show();
 
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Player Management could not be opened.\n\n" +
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
+        this.Hide();
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(
+            "Player Management could not be opened.\n\n" +
+            ex.Message,
+            "Error",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
+    }
+}
 
         // =========================================================
         // Match Management
         // =========================================================
         private void btnNavMatch_Click(object sender, EventArgs e)
         {
-            SetSelectedButton(btnNavMatch);
+            try
+            {
+                SetSelectedButton(btnNavMatch);
 
-            lblPageTitle.Text = "Match Management";
+                MatchForm matchForm =
+                    new MatchForm(this);
 
-            lblWelcomeSub.Text =
-                "Create and manage tournament matches.";
+                matchForm.Show();
 
-            pnlMainContent.Controls.Clear();
-
-            Label label = CreatePageMessage(
-                "⚔️ Match Management",
-                "Match management module is ready."
-            );
-
-            pnlMainContent.Controls.Add(label);
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Match Management could not be opened.\n\n" +
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         // =========================================================
