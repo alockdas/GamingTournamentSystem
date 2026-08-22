@@ -259,19 +259,12 @@ namespace GamingTournamentSystem.Forms
         {
             SetSelectedButton(btnNavTeam);
 
-            lblPageTitle.Text = "Team Management";
+            TeamForm teamForm =
+                new TeamForm(this);
 
-            lblWelcomeSub.Text =
-                "Manage registered teams and team information.";
+            teamForm.Show();
 
-            pnlMainContent.Controls.Clear();
-
-            Label label = CreatePageMessage(
-                "👥 Team Management",
-                "Team management module is ready."
-            );
-
-            pnlMainContent.Controls.Add(label);
+            this.Hide();
         }
 
         // =========================================================
