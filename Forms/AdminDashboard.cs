@@ -270,23 +270,31 @@ namespace GamingTournamentSystem.Forms
         // =========================================================
         // Player Management
         // =========================================================
+        // =========================================================
+        // Player Management
+        // =========================================================
         private void btnNavPlayer_Click(object sender, EventArgs e)
         {
-            SetSelectedButton(btnNavPlayer);
+            try
+            {
+                SetSelectedButton(btnNavPlayer);
 
-            lblPageTitle.Text = "Player Management";
+                PlayerForm playerForm =
+                    new PlayerForm(this);
 
-            lblWelcomeSub.Text =
-                "Manage players and player information.";
+                playerForm.Show();
 
-            pnlMainContent.Controls.Clear();
-
-            Label label = CreatePageMessage(
-                "🎮 Player Management",
-                "Player management module is ready."
-            );
-
-            pnlMainContent.Controls.Add(label);
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Player Management could not be opened.\n\n" +
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         // =========================================================
