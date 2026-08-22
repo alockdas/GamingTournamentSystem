@@ -25,45 +25,75 @@ namespace GamingTournamentSystem.Services
         // ======================================================
         // Add a new tournament into the database
         // ======================================================
-        public void AddTournament(Tournament tournament)
+        // ======================================================
+        // Add a new tournament into the database
+        // ======================================================
+        public bool AddTournament(Tournament tournament)
         {
-            using (MySqlConnection connection = databaseManager.GetConnection())
+            try
             {
-                connection.Open();
-
-                string query = @"INSERT INTO Tournaments
-                                (
-                                    TournamentName,
-                                    GameName,
-                                    StartDate,
-                                    EndDate,
-                                    PrizePool,
-                                    Status
-                                )
-                                VALUES
-                                (
-                                    @TournamentName,
-                                    @GameName,
-                                    @StartDate,
-                                    @EndDate,
-                                    @PrizePool,
-                                    @Status
-                                );";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection =
+                       databaseManager.GetConnection())
                 {
-                    command.Parameters.AddWithValue("@TournamentName", tournament.TournamentName);
-                    command.Parameters.AddWithValue("@GameName", tournament.GameName);
-                    command.Parameters.AddWithValue("@StartDate", tournament.StartDate);
-                    command.Parameters.AddWithValue("@EndDate", tournament.EndDate);
-                    command.Parameters.AddWithValue("@PrizePool", tournament.PrizePool);
-                    command.Parameters.AddWithValue("@Status", tournament.Status);
+                    connection.Open();
 
-                    command.ExecuteNonQuery();
+                    string query = @"INSERT INTO Tournaments
+                            (
+                                TournamentName,
+                                GameName,
+                                StartDate,
+                                EndDate,
+                                PrizePool,
+                                Status
+                            )
+                            VALUES
+                            (
+                                @TournamentName,
+                                @GameName,
+                                @StartDate,
+                                @EndDate,
+                                @PrizePool,
+                                @Status
+                            );";
+
+                    using (MySqlCommand command =
+                           new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue(
+                            "@TournamentName",
+                            tournament.TournamentName);
+
+                        command.Parameters.AddWithValue(
+                            "@GameName",
+                            tournament.GameName);
+
+                        command.Parameters.AddWithValue(
+                            "@StartDate",
+                            tournament.StartDate);
+
+                        command.Parameters.AddWithValue(
+                            "@EndDate",
+                            tournament.EndDate);
+
+                        command.Parameters.AddWithValue(
+                            "@PrizePool",
+                            tournament.PrizePool);
+
+                        command.Parameters.AddWithValue(
+                            "@Status",
+                            tournament.Status);
+
+                        int rowsAffected =
+                            command.ExecuteNonQuery();
+
+                        return rowsAffected > 0;
+                    }
                 }
             }
-
-            Console.WriteLine("Tournament Added Successfully!");
+            catch
+            {
+                throw;
+            }
         }
 
 

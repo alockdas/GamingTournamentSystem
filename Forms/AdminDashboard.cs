@@ -230,21 +230,26 @@ namespace GamingTournamentSystem.Forms
         // =========================================================
         private void btnNavTournament_Click(object sender, EventArgs e)
         {
-            SetSelectedButton(btnNavTournament);
+            try
+            {
+                SetSelectedButton(btnNavTournament);
 
-            lblPageTitle.Text = "Tournament Management";
+                TournamentForm tournamentForm =
+                    new TournamentForm(this);
 
-            lblWelcomeSub.Text =
-                "Create, update and manage gaming tournaments.";
+                tournamentForm.Show();
 
-            pnlMainContent.Controls.Clear();
-
-            Label label = CreatePageMessage(
-                "🏆 Tournament Management",
-                "Tournament management module is ready."
-            );
-
-            pnlMainContent.Controls.Add(label);
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Tournament Management could not be opened.\n\n" +
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         // =========================================================
