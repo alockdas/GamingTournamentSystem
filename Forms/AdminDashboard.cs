@@ -329,21 +329,26 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
         // =========================================================
         private void btnNavLeaderboard_Click(object sender, EventArgs e)
         {
-            SetSelectedButton(btnNavLeaderboard);
+            try
+            {
+                SetSelectedButton(btnNavLeaderboard);
 
-            lblPageTitle.Text = "Leaderboard";
+                LeaderboardForm leaderboardForm =
+                    new LeaderboardForm(this);
 
-            lblWelcomeSub.Text =
-                "View tournament rankings and player standings.";
+                leaderboardForm.Show();
 
-            pnlMainContent.Controls.Clear();
-
-            Label label = CreatePageMessage(
-                "📈 Leaderboard",
-                "Leaderboard module is ready."
-            );
-
-            pnlMainContent.Controls.Add(label);
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Leaderboard could not be opened.\n\n" +
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         // =========================================================
@@ -351,21 +356,26 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
         // =========================================================
         private void btnNavReports_Click(object sender, EventArgs e)
         {
-            SetSelectedButton(btnNavReports);
+            try
+            {
+                SetSelectedButton(btnNavReports);
 
-            lblPageTitle.Text = "Reports";
+                ReportsForm reportsForm =
+                    new ReportsForm(this);
 
-            lblWelcomeSub.Text =
-                "Generate and view tournament reports.";
+                reportsForm.Show();
 
-            pnlMainContent.Controls.Clear();
-
-            Label label = CreatePageMessage(
-                "📄 Reports",
-                "Reports module is ready."
-            );
-
-            pnlMainContent.Controls.Add(label);
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Reports Management could not be opened.\n\n" +
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         // =========================================================
@@ -450,7 +460,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
         // =========================================================
         // Logout
         // =========================================================
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void btnLogout_Click(
+            object? sender,
+            EventArgs e)
         {
             DialogResult result =
                 MessageBox.Show(
@@ -459,15 +471,18 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                LoginForm loginForm =
-                    new LoginForm();
+            if (result != DialogResult.Yes)
+                return;
 
-                loginForm.Show();
+            LoginForm loginForm =
+                new LoginForm();
 
-                this.Close();
-            }
+            loginForm.FormClosed +=
+                (s, args) => this.Close();
+
+            loginForm.Show();
+
+            this.Hide();
         }
     }
 }
