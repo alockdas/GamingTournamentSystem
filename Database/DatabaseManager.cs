@@ -5,7 +5,7 @@ namespace GamingTournamentSystem.Database
     public class DatabaseManager
     {
         private readonly string connectionString =
-            "Server=127.0.0.1;Port=3306;Database=gamingtournamentdb;Uid=root;Pwd=admin123;";
+            "Server=127.0.0.1;Port=3306;Database=GamingTournament;Uid=root;Pwd=astonDB01;";
 
         public MySqlConnection GetConnection()
         {

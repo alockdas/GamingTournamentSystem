@@ -1,4 +1,4 @@
-﻿namespace GamingTournamentSystem.Forms
+namespace GamingTournamentSystem.Forms
 {
     partial class TournamentAddForm
     {
@@ -551,7 +551,7 @@
                 new object[]
                 {
                     "Upcoming",
-                    "Ongoing",
+                    "Running",
                     "Completed",
                     "Cancelled"
                 });

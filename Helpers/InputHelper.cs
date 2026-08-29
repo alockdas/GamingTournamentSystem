@@ -89,7 +89,7 @@ namespace GamingTournamentSystem.Helpers
         {
             while (true)
             {
-                Console.Write("Status (Upcoming/Running/Completed): ");
+                Console.Write("Status (Upcoming/Running/Completed/Cancelled): ");
 
                 string? status = Console.ReadLine();
 
@@ -109,11 +109,14 @@ namespace GamingTournamentSystem.Helpers
 
                 if (status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
                     return "Completed";
+                if (status.Equals("Cancelled", StringComparison.OrdinalIgnoreCase))
+                    return "Cancelled";
 
                 Console.WriteLine("❌ Invalid status! Allowed values:");
                 Console.WriteLine("   • Upcoming");
                 Console.WriteLine("   • Running");
-                Console.WriteLine("   • Completed\n");
+                Console.WriteLine("   • Completed");
+                Console.WriteLine("   • Cancelled\n");
             }
         }
 
