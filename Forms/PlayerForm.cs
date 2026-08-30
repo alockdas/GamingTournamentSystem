@@ -10,9 +10,9 @@ namespace GamingTournamentSystem.Forms
         private readonly PlayerService playerService;
         private readonly AdminDashboard adminDashboard;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public PlayerForm(AdminDashboard dashboard)
         {
             InitializeComponent();
@@ -23,17 +23,17 @@ namespace GamingTournamentSystem.Forms
             LoadPlayers();
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void PlayerForm_Load(object sender, EventArgs e)
         {
             LoadPlayers();
         }
 
-        // =========================================================
+        
         // Load All Players
-        // =========================================================
+        
         private void LoadPlayers()
         {
             try
@@ -71,9 +71,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // ADD PLAYER
-        // =========================================================
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             using (PlayerAddForm addForm =
@@ -86,9 +86,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // UPDATE PLAYER
-        // =========================================================
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvPlayers.SelectedRows.Count == 0)
@@ -156,9 +156,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // DELETE PLAYER
-        // =========================================================
+        
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvPlayers.SelectedRows.Count == 0)
@@ -231,18 +231,18 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // BACK
-        // =========================================================
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             adminDashboard.Show();
             this.Close();
         }
 
-        // =========================================================
+        
         // Double Click Row
-        // =========================================================
+        
         private void dgvPlayers_CellDoubleClick(
             object sender,
             DataGridViewCellEventArgs e)

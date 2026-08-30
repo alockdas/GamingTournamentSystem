@@ -29,9 +29,9 @@ namespace GamingTournamentSystem.Models
 
         }
 
-        // ======================================================
+        
         // Constructor for Add Player
-        // ======================================================
+        
         public Player(
             int teamID,
             string fullName,
@@ -54,9 +54,9 @@ namespace GamingTournamentSystem.Models
             Role = role;
         }
 
-        // ======================================================
+        
         // Constructor for Update Player
-        // ======================================================
+        
         public Player(
             int playerID,
             int userID,

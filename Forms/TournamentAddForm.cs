@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly TournamentService tournamentService;
         private readonly Tournament? editingTournament;
 
-        // =========================================================
+        
         // ADD CONSTRUCTOR
-        // =========================================================
+        
         public TournamentAddForm()
         {
             InitializeComponent();
@@ -30,9 +30,9 @@ namespace GamingTournamentSystem.Forms
             LoadDefaultValues();
         }
 
-        // =========================================================
+        
         // UPDATE CONSTRUCTOR
-        // =========================================================
+        
         public TournamentAddForm(Tournament tournament)
         {
             InitializeComponent();
@@ -49,9 +49,9 @@ namespace GamingTournamentSystem.Forms
             LoadTournamentData();
         }
 
-        // =========================================================
+        
         // Default Values
-        // =========================================================
+        
         private void LoadDefaultValues()
         {
             dtpStartDate.Value = DateTime.Today;
@@ -62,9 +62,9 @@ namespace GamingTournamentSystem.Forms
             cmbStatus.SelectedIndex = 0;
         }
 
-        // =========================================================
+        
         // Load Existing Tournament
-        // =========================================================
+        
         private void LoadTournamentData()
         {
             if (editingTournament == null)
@@ -101,9 +101,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void TournamentAddForm_Load(object sender, EventArgs e)
         {
             if (editingTournament == null)
@@ -112,14 +112,14 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // SAVE / UPDATE
-        // =========================================================
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // -----------------------------------------------------
+            
             // Validate Tournament Name
-            // -----------------------------------------------------
+            
             string tournamentName =
                 txtTournamentName.Text.Trim();
 
@@ -135,9 +135,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Validate Game Name
-            // -----------------------------------------------------
+            
             string gameName =
                 txtGameName.Text.Trim();
 
@@ -153,9 +153,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Validate Dates
-            // -----------------------------------------------------
+            
             DateTime startDate =
                 dtpStartDate.Value.Date;
 
@@ -174,9 +174,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Validate Prize Pool
-            // -----------------------------------------------------
+            
             if (!decimal.TryParse(
                     txtPrizePool.Text.Trim(),
                     out decimal prizePool))
@@ -203,9 +203,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Validate Status
-            // -----------------------------------------------------
+            
             if (cmbStatus.SelectedIndex < 0)
             {
                 MessageBox.Show(
@@ -224,9 +224,9 @@ namespace GamingTournamentSystem.Forms
 
             try
             {
-                // =================================================
+                
                 // UPDATE EXISTING TOURNAMENT
-                // =================================================
+                
                 if (editingTournament != null)
                 {
                     editingTournament.TournamentName =
@@ -274,9 +274,9 @@ namespace GamingTournamentSystem.Forms
                     }
                 }
 
-                // =================================================
+                
                 // CREATE NEW TOURNAMENT
-                // =================================================
+                
                 else
                 {
                     Tournament tournament =
@@ -339,9 +339,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // CANCEL
-        // =========================================================
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult =

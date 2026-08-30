@@ -24,9 +24,9 @@ namespace GamingTournamentSystem.Services
 
                 try
                 {
-                    // ==========================
+                    
                     // Insert into Users
-                    // ==========================
+                    
                     string userQuery = @"INSERT INTO Users
                                         (FullName, Username, Email, Password, Role)
                                         VALUES
@@ -47,9 +47,9 @@ namespace GamingTournamentSystem.Services
                         userID = Convert.ToInt32(userCommand.LastInsertedId);
                     }
 
-                    // ==========================
+                    
                     // Insert into Players
-                    // ==========================
+                    
                     string playerQuery = @"INSERT INTO Players
                                           (UserID, TeamID, FullName, InGameName,
                                            Email, Phone, Age, Role)
@@ -82,9 +82,9 @@ namespace GamingTournamentSystem.Services
             }
         }
 
-        // ======================================================
+        
         // Get All Players
-        // ======================================================
+        
         public List<Player> GetAllPlayers()
         {
             List<Player> players = new List<Player>();
@@ -137,9 +137,9 @@ namespace GamingTournamentSystem.Services
             return players;
         }
 
-        // ======================================================
+        
         // Check if Player exists
-        // ======================================================
+        
         public bool PlayerExists(int playerID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -159,9 +159,9 @@ namespace GamingTournamentSystem.Services
             }
         }
 
-        // ======================================================
+        
         // Check if Email already exists
-        // ======================================================
+        
         public bool EmailExists(string email)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -181,9 +181,9 @@ namespace GamingTournamentSystem.Services
             }
         }
 
-        // ======================================================
+        
         // Update Player
-        // ======================================================
+        
         public bool UpdatePlayer(Player player)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -194,9 +194,9 @@ namespace GamingTournamentSystem.Services
 
                 try
                 {
-                    // =========================================
+                    
                     // Update Users Table
-                    // =========================================
+                    
                     string userQuery = @"
                         UPDATE Users
                         SET FullName = @FullName,
@@ -217,9 +217,9 @@ namespace GamingTournamentSystem.Services
                         userCommand.ExecuteNonQuery();
                     }
 
-                    // =========================================
+                    
                     // Update Players Table
-                    // =========================================
+                    
                     string playerQuery = @"
                         UPDATE Players
                         SET TeamID = @TeamID,
@@ -258,9 +258,9 @@ namespace GamingTournamentSystem.Services
             }
         }
 
-        // ======================================================
+        
         // Delete Player
-        // ======================================================
+        
         public bool DeletePlayer(int playerID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -281,9 +281,9 @@ namespace GamingTournamentSystem.Services
         }
 
 
-        // ======================================================
+        
         // Get UserID by PlayerID
-        // ======================================================
+        
         public int GetUserIDByPlayerID(int playerID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())

@@ -10,9 +10,9 @@ namespace GamingTournamentSystem.Forms
         private readonly PlayerService playerService;
         private readonly Player? editingPlayer;
 
-        // =========================================================
+        
         // ADD Constructor
-        // =========================================================
+        
         public PlayerAddForm()
         {
             InitializeComponent();
@@ -25,9 +25,9 @@ namespace GamingTournamentSystem.Forms
                 "Create a player account and assign the player to a team.";
         }
 
-        // =========================================================
+        
         // UPDATE Constructor
-        // =========================================================
+        
         public PlayerAddForm(Player player)
         {
             InitializeComponent();
@@ -42,9 +42,9 @@ namespace GamingTournamentSystem.Forms
             LoadPlayerInformation();
         }
 
-        // =========================================================
+        
         // Load Existing Player
-        // =========================================================
+        
         private void LoadPlayerInformation()
         {
             if (editingPlayer == null)
@@ -78,14 +78,14 @@ namespace GamingTournamentSystem.Forms
                 editingPlayer.Role;
         }
 
-        // =========================================================
+        
         // SAVE
-        // =========================================================
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // -----------------------------------------------------
+            
             // Team ID
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtTeamID.Text))
             {
                 MessageBox.Show(
@@ -124,9 +124,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Full Name
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtFullName.Text))
             {
                 MessageBox.Show(
@@ -139,9 +139,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Username
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             {
                 MessageBox.Show(
@@ -154,9 +154,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Email
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 MessageBox.Show(
@@ -169,9 +169,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Password
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
                 MessageBox.Show(
@@ -184,9 +184,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // In-Game Name
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtInGameName.Text))
             {
                 MessageBox.Show(
@@ -199,9 +199,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Phone
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtPhone.Text))
             {
                 MessageBox.Show(
@@ -214,9 +214,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Age
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtAge.Text))
             {
                 MessageBox.Show(
@@ -255,9 +255,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Role
-            // -----------------------------------------------------
+            
             if (string.IsNullOrWhiteSpace(txtRole.Text))
             {
                 MessageBox.Show(
@@ -270,9 +270,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Create Player Object
-            // -----------------------------------------------------
+            
             Player player;
 
             if (editingPlayer == null)
@@ -306,9 +306,9 @@ namespace GamingTournamentSystem.Forms
                 );
             }
 
-            // -----------------------------------------------------
+            
             // ADD / UPDATE
-            // -----------------------------------------------------
+            
             try
             {
                 if (editingPlayer == null)
@@ -359,9 +359,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // CANCEL
-        // =========================================================
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

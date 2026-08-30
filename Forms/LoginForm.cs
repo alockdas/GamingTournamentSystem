@@ -17,9 +17,9 @@ namespace GamingTournamentSystem.Forms
                 new AuthenticationService();
         }
 
-        // =====================================================
+        
         // LOGIN
-        // =====================================================
+        
 
         private void btnLogin_Click(
             object? sender,
@@ -31,9 +31,9 @@ namespace GamingTournamentSystem.Forms
             string password =
                 txtPassword.Text;
 
-            // =================================================
+            
             // VALIDATION
-            // =================================================
+            
 
             if (string.IsNullOrWhiteSpace(username))
             {
@@ -63,18 +63,18 @@ namespace GamingTournamentSystem.Forms
 
             try
             {
-                // =================================================
+                
                 // DATABASE LOGIN
-                // =================================================
+                
 
                 User? user =
                     authenticationService.Login(
                         username,
                         password);
 
-                // =================================================
+                
                 // INVALID LOGIN
-                // =================================================
+                
 
                 if (user == null)
                 {
@@ -91,9 +91,9 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // =================================================
+                
                 // ADMIN
-                // =================================================
+                
 
                 if (user.Role.Equals(
                     "Admin",
@@ -112,9 +112,9 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // =================================================
+                
                 // PLAYER
-                // =================================================
+                
 
                 if (user.Role.Equals(
                     "Player",
@@ -133,9 +133,9 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // =================================================
+                
                 // ORGANIZER
-                // =================================================
+                
 
                 if (user.Role.Equals(
                     "Organizer",
@@ -150,9 +150,9 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // =================================================
+                
                 // UNKNOWN ROLE
-                // =================================================
+                
 
                 MessageBox.Show(
                     "Unknown user role.",
@@ -171,9 +171,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =====================================================
+        
         // EXIT
-        // =====================================================
+        
 
         private void btnExit_Click(
             object? sender,
@@ -182,9 +182,9 @@ namespace GamingTournamentSystem.Forms
             Application.Exit();
         }
 
-        // =====================================================
+        
         // LOGO
-        // =====================================================
+        
 
         private void lblLogo_Click(
             object? sender,
@@ -192,9 +192,9 @@ namespace GamingTournamentSystem.Forms
         {
         }
 
-        // =====================================================
+        
         // DESCRIPTION
-        // =====================================================
+        
 
         private void lblDesc_Click(
             object? sender,

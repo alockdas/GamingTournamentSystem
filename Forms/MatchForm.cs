@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly MatchService matchService;
         private readonly AdminDashboard adminDashboard;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public MatchForm(AdminDashboard dashboard)
         {
             InitializeComponent();
@@ -24,9 +24,9 @@ namespace GamingTournamentSystem.Forms
             LoadMatches();
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void MatchForm_Load(object sender, EventArgs e)
         {
             LoadMatches();
@@ -72,9 +72,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // ADD MATCH
-        // =========================================================
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             using (MatchAddForm addForm =
@@ -87,9 +87,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // UPDATE MATCH
-        // =========================================================
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvMatches.SelectedRows.Count == 0)
@@ -157,9 +157,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // DELETE MATCH
-        // =========================================================
+        
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvMatches.SelectedRows.Count == 0)
@@ -227,18 +227,18 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // BACK
-        // =========================================================
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             adminDashboard.Show();
             this.Close();
         }
 
-        // =========================================================
+        
         // Double Click Row
-        // =========================================================
+        
         private void dgvMatches_CellDoubleClick(
             object sender,
             DataGridViewCellEventArgs e)

@@ -63,9 +63,9 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-         // ======================================================
+         
         // Add Player
-        // ======================================================
+        
         private void AddPlayer()
         {
             Console.Clear();
@@ -147,9 +147,9 @@ namespace GamingTournamentSystem.Menus
 
             Pause();
         }
-        // ======================================================
+        
         // View Players
-        // ======================================================
+        
         private void ViewPlayers()
         {
             Console.Clear();
@@ -197,9 +197,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Update Player
-        // ======================================================
+        
         private void UpdatePlayer()
         {
             Console.Clear();
@@ -284,9 +284,9 @@ namespace GamingTournamentSystem.Menus
         }
 
 
-        // ======================================================
+        
         // Delete Player
-        // ======================================================
+        
         private void DeletePlayer()
         {
             Console.Clear();
@@ -329,9 +329,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // View Players Without Pause
-        // ======================================================
+        
         private void ViewPlayersWithoutPause()
         {
             List<Player> players = playerService.GetAllPlayers();
@@ -362,9 +362,9 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+        
         // Pause
-        // ======================================================
+        
         private void Pause()
         {
             Console.WriteLine();

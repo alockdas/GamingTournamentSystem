@@ -1,9 +1,4 @@
-// ======================================================
-// File: AdminMenu.cs
-// Purpose:
-// Displays the Admin Dashboard and handles
-// all admin navigation options.
-// ======================================================
+
 
 using GamingTournamentSystem.Menus;
 
@@ -71,63 +66,63 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+        
         // Open Tournament Management Menu
-        // ======================================================
+        
         private void OpenTournamentMenu()
         {
             TournamentMenu tournamentMenu = new TournamentMenu();
             tournamentMenu.Show();
         }
 
-        // ======================================================
+        
         // Open Team Management Menu
-        // ======================================================
+        
         private void OpenTeamMenu()
         {
             TeamMenu teamMenu = new TeamMenu();
             teamMenu.Show();
         }
 
-        // ======================================================
+        
         // Player Management Placeholder
-        // ======================================================
+        
         private void OpenPlayerMenu()
         {
             PlayerMenu playerMenu = new PlayerMenu();
             playerMenu.Show();
         }
 
-        // ======================================================
+        
         // Match Management Placeholder
-        // ======================================================
+        
         private void MatchMenu()
         {
             MatchMenu matchMenu = new MatchMenu();
             matchMenu.Show();
         }
 
-        // ======================================================
+        
         // Leaderboard Placeholder
-        // ======================================================
+        
         private void OpenLeaderboard()
         {
             LeaderboardMenu leaderboardMenu = new LeaderboardMenu();
             leaderboardMenu.Show();
         }
 
-        // ================================ ======================
+        
         // Reports Placeholder
-        // ======================================================
+        
         private void OpenReportsMenu()
         {
             ReportsMenu reportsMenu = new ReportsMenu();
             reportsMenu.Show();
         }
 
-        // ======================================================
+        
         // Pause before returning to dashboard
-        // ======================================================
+        
         private void Pause()
         {
             Console.WriteLine();

@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly TeamService teamService;
         private readonly AdminDashboard adminDashboard;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public TeamForm(AdminDashboard dashboard)
         {
             InitializeComponent();
@@ -24,17 +24,17 @@ namespace GamingTournamentSystem.Forms
             LoadTeams();
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void TeamForm_Load(object sender, EventArgs e)
         {
             LoadTeams();
         }
 
-        // =========================================================
+        
         // Load All Teams
-        // =========================================================
+        
         private void LoadTeams()
         {
             try
@@ -75,9 +75,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // ADD TEAM
-        // =========================================================
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             using (TeamAddForm addForm =
@@ -90,9 +90,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // UPDATE TEAM
-        // =========================================================
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvTeams.SelectedRows.Count == 0)
@@ -160,9 +160,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // DELETE TEAM
-        // =========================================================
+        
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvTeams.SelectedRows.Count == 0)
@@ -235,18 +235,18 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // BACK
-        // =========================================================
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             adminDashboard.Show();
             this.Close();
         }
 
-        // =========================================================
+        
         // Double Click Row
-        // =========================================================
+        
         private void dgvTeams_CellDoubleClick(
             object sender,
             DataGridViewCellEventArgs e)

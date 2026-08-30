@@ -32,9 +32,9 @@ namespace GamingTournamentSystem.Forms
             LoadDashboard();
         }
 
-        // =====================================================
+        
         // FORM LOAD
-        // =====================================================
+        
 
         private void PlayerDashboard_Load(
             object? sender,
@@ -43,9 +43,9 @@ namespace GamingTournamentSystem.Forms
             LoadDashboard();
         }
 
-        // =====================================================
+        
         // DASHBOARD
-        // =====================================================
+        
 
         private void btnDashboard_Click(
             object? sender,
@@ -107,9 +107,9 @@ namespace GamingTournamentSystem.Forms
                 pnlContent.Controls.Add(card2);
                 pnlContent.Controls.Add(card3);
 
-                // =================================================
+                
                 // TEAM SUMMARY
-                // =================================================
+                
 
                 Panel teamCard = new Panel
                 {
@@ -186,9 +186,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =====================================================
+        
         // TOURNAMENTS
-        // =====================================================
+        
 
         private void btnTournaments_Click(
             object? sender,
@@ -215,17 +215,17 @@ namespace GamingTournamentSystem.Forms
 
                 pnlContent.Controls.Add(heading);
 
-                // =================================================
+                
                 // GET PLAYER'S ASSIGNED TEAM
-                // =================================================
+                
 
                 TeamInfo? team =
                     dashboardService.GetMyTeam(
                         currentUser.UserID);
 
-                // =================================================
+                
                 // NO TEAM / NO TOURNAMENT
-                // =================================================
+                
 
                 if (team == null)
                 {
@@ -237,9 +237,9 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // =================================================
+                
                 // TOURNAMENT CARD
-                // =================================================
+                
 
                 Panel card = new Panel
                 {
@@ -250,9 +250,9 @@ namespace GamingTournamentSystem.Forms
                         BorderStyle.FixedSingle
                 };
 
-                // =================================================
+                
                 // TOURNAMENT NAME
-                // =================================================
+                
 
                 Label name = new Label
                 {
@@ -268,9 +268,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // GAME
-                // =================================================
+                
 
                 Label game = new Label
                 {
@@ -289,9 +289,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // MY TEAM
-                // =================================================
+                
 
                 Label teamName = new Label
                 {
@@ -311,9 +311,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // CAPTAIN
-                // =================================================
+                
 
                 Label captain = new Label
                 {
@@ -332,9 +332,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // PLAYERS
-                // =================================================
+                
 
                 Label players = new Label
                 {
@@ -353,9 +353,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // POINTS
-                // =================================================
+                
 
                 Label points = new Label
                 {
@@ -375,9 +375,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // MATCHES
-                // =================================================
+                
 
                 Label matches = new Label
                 {
@@ -396,9 +396,9 @@ namespace GamingTournamentSystem.Forms
                     AutoSize = true
                 };
 
-                // =================================================
+                
                 // ADD CONTROLS
-                // =================================================
+                
 
                 card.Controls.Add(name);
                 card.Controls.Add(game);
@@ -416,9 +416,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =====================================================
+        
         // MY TEAM
-        // =====================================================
+        
 
         private void btnMyTeam_Click(
             object? sender,
@@ -537,9 +537,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =====================================================
+        
         // MATCHES
-        // =====================================================
+        
 
         private void btnMatches_Click(
             object? sender,
@@ -704,9 +704,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =====================================================
+        
         // LEADERBOARD
-        // =====================================================
+        
 
         private void btnLeaderboard_Click(
             object? sender,
@@ -747,9 +747,9 @@ namespace GamingTournamentSystem.Forms
                     return;
                 }
 
-                // =================================================
+                
                 // HEADER
-                // =================================================
+                
 
                 Panel header = new Panel
                 {
@@ -876,9 +876,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =====================================================
+        
         // PROFILE
-        // =====================================================
+        
 
         private void btnProfile_Click(
             object? sender,
@@ -973,9 +973,9 @@ namespace GamingTournamentSystem.Forms
             pnlContent.Controls.Add(card);
         }
 
-        // =====================================================
+        
         // LOGOUT
-        // =====================================================
+        
 
         private void btnLogout_Click(
             object? sender,
@@ -1002,9 +1002,9 @@ namespace GamingTournamentSystem.Forms
             this.Hide();
         }
 
-        // =====================================================
+        
         // ACTIVE BUTTON
-        // =====================================================
+        
 
         private void SetActiveButton(
             Button activeButton)
@@ -1041,9 +1041,9 @@ namespace GamingTournamentSystem.Forms
                 Color.White;
         }
 
-        // =====================================================
+        
         // STAT CARD
-        // =====================================================
+        
 
         private Panel CreateStatCard(
             string icon,
@@ -1134,9 +1134,9 @@ namespace GamingTournamentSystem.Forms
             return card;
         }
 
-        // =====================================================
+        
         // CONTENT TITLE
-        // =====================================================
+        
 
         private Label CreateContentTitle(
             string text)
@@ -1160,9 +1160,9 @@ namespace GamingTournamentSystem.Forms
             };
         }
 
-        // =====================================================
+        
         // INFO LABEL
-        // =====================================================
+        
 
         private void AddInfoLabel(
             Panel parent,
@@ -1240,9 +1240,9 @@ namespace GamingTournamentSystem.Forms
             pnlContent.Controls.Add(label);
         }
 
-        // =====================================================
+        
         // LEADERBOARD HEADER
-        // =====================================================
+        
 
         private void AddHeaderLabel(
             Panel parent,
@@ -1268,9 +1268,9 @@ namespace GamingTournamentSystem.Forms
             parent.Controls.Add(label);
         }
 
-        // =====================================================
+        
         // LEADERBOARD ROW
-        // =====================================================
+        
 
         private void AddRowLabel(
             Panel parent,
@@ -1299,9 +1299,9 @@ namespace GamingTournamentSystem.Forms
             parent.Controls.Add(label);
         }
 
-        // =====================================================
+        
         // DATABASE ERROR
-        // =====================================================
+        
 
         private void ShowDatabaseError(
             Exception ex)

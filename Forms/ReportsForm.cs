@@ -17,9 +17,9 @@ namespace GamingTournamentSystem.Forms
         private readonly MatchService matchService;
         private readonly LeaderboardService leaderboardService;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public ReportsForm(AdminDashboard dashboard)
         {
             InitializeComponent();
@@ -35,17 +35,17 @@ namespace GamingTournamentSystem.Forms
             LoadReportsPage();
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void ReportsForm_Load(object sender, EventArgs e)
         {
             LoadReportsPage();
         }
 
-        // =========================================================
+        
         // Main Reports Page
-        // =========================================================
+        
         private void LoadReportsPage()
         {
             lblPageTitle.Text = "Reports";
@@ -63,9 +63,9 @@ namespace GamingTournamentSystem.Forms
             pnlReportContent.Controls.Add(message);
         }
 
-        // =========================================================
+        
         // Tournament Report
-        // =========================================================
+        
         private void btnTournamentReport_Click(
             object sender,
             EventArgs e)
@@ -121,9 +121,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Team Report
-        // =========================================================
+        
         private void btnTeamReport_Click(
             object sender,
             EventArgs e)
@@ -184,9 +184,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Player Report
-        // =========================================================
+        
         private void btnPlayerReport_Click(
             object sender,
             EventArgs e)
@@ -244,9 +244,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Match Report
-        // =========================================================
+        
         private void btnMatchReport_Click(
             object sender,
             EventArgs e)
@@ -272,9 +272,9 @@ namespace GamingTournamentSystem.Forms
 
                 foreach (Match match in matches)
                 {
-                    // -------------------------------------------------
+                    
                     // Winner
-                    // -------------------------------------------------
+                    
                     string winner = "-";
 
                     if (match.WinnerTeamID.HasValue)
@@ -283,25 +283,23 @@ namespace GamingTournamentSystem.Forms
                             match.WinnerTeamID.Value.ToString();
                     }
 
-                    // -------------------------------------------------
+                    
                     // Date
-                    // -------------------------------------------------
                     // Do NOT use :yyyy-MM-dd formatting here.
                     // This prevents runtime format errors when
                     // MatchDate is stored/returned as string.
                     string matchDate =
                         Convert.ToString(match.MatchDate) ?? "";
 
-                    // -------------------------------------------------
+                    
                     // Time
-                    // -------------------------------------------------
                     // Do NOT use :hh\:mm formatting here either.
                     string matchTime =
                         Convert.ToString(match.MatchTime) ?? "";
 
-                    // -------------------------------------------------
+                    
                     // Match Report Row
-                    // -------------------------------------------------
+                    
                     report.AppendLine(
                         $"{match.MatchID,-5}" +
                         $"{match.TournamentID,-6}" +
@@ -337,9 +335,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Leaderboard Report
-        // =========================================================
+        
         private void btnLeaderboardReport_Click(
             object sender,
             EventArgs e)
@@ -402,9 +400,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Show Report
-        // =========================================================
+        
         private void ShowReport(
             string title,
             string reportText)
@@ -459,17 +457,17 @@ namespace GamingTournamentSystem.Forms
                 reportBox);
         }
 
-        // =========================================================
+        
         // Clear Report Area
-        // =========================================================
+        
         private void ClearReportArea()
         {
             pnlReportContent.Controls.Clear();
         }
 
-        // =========================================================
+        
         // Create Message Label
-        // =========================================================
+        
         private Label CreateMessageLabel(
             string title,
             string message)
@@ -509,9 +507,9 @@ namespace GamingTournamentSystem.Forms
             return label;
         }
 
-        // =========================================================
+        
         // Selected Report Button
-        // =========================================================
+        
         private void SetSelectedButton(
             Button selectedButton)
         {
@@ -546,9 +544,9 @@ namespace GamingTournamentSystem.Forms
                 Color.White;
         }
 
-        // =========================================================
+        
         // Back
-        // =========================================================
+        
         private void btnBack_Click(
             object sender,
             EventArgs e)
@@ -558,9 +556,9 @@ namespace GamingTournamentSystem.Forms
             Close();
         }
 
-        // =========================================================
+        
         // Error Message
-        // =========================================================
+        
         private void ShowError(
             string message,
             Exception ex)
@@ -574,9 +572,9 @@ namespace GamingTournamentSystem.Forms
                 MessageBoxIcon.Error);
         }
 
-        // =========================================================
+        
         // Limit Long Text
-        // =========================================================
+        
         private string LimitText(
             string text,
             int maxLength)

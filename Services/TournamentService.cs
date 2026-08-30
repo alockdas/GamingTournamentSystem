@@ -1,8 +1,4 @@
-// ======================================================
-// File: TournamentService.cs
-// Purpose:
-// Handles all database operations related to tournaments.
-// ======================================================
+
 
 using MySql.Data.MySqlClient;
 using GamingTournamentSystem.Database;
@@ -22,12 +18,12 @@ namespace GamingTournamentSystem.Services
         }
 
 
-        // ======================================================
+        
         // Add a new tournament into the database
-        // ======================================================
-        // ======================================================
+        
+        
         // Add a new tournament into the database
-        // ======================================================
+        
         public bool AddTournament(Tournament tournament)
         {
             try
@@ -97,9 +93,9 @@ namespace GamingTournamentSystem.Services
         }
 
 
-        // ======================================================
+        
         // Retrieve all tournaments from the database
-        // ======================================================
+        
         public List<Tournament> GetAllTournaments()
         {
             // List to store all tournaments
@@ -140,12 +136,12 @@ namespace GamingTournamentSystem.Services
 
 
 
-        // ======================================================
+        
         // Update an existing tournament
-        // ======================================================
-        // ======================================================
+        
+        
         // Update an existing tournament
-        // ======================================================
+        
         public bool UpdateTournament(Tournament tournament)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -179,9 +175,9 @@ namespace GamingTournamentSystem.Services
         }
 
 
-        // ======================================================
+        
         // Delete a tournament from the database
-        // ======================================================
+        
         public bool DeleteTournament(int tournamentID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -204,9 +200,9 @@ namespace GamingTournamentSystem.Services
 
 
 
-        // ======================================================
+        
         // Check whether a tournament exists
-        // ======================================================
+        
         public bool TournamentExists(int tournamentID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())

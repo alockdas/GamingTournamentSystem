@@ -2,9 +2,9 @@
 
 namespace GamingTournamentSystem.Models
 {
-    // =========================================================
+    
     // TEAM INFO
-    // =========================================================
+    
 
     public class TeamInfo
     {
@@ -34,9 +34,9 @@ namespace GamingTournamentSystem.Models
     }
 
 
-    // =========================================================
+    
     // TOURNAMENT INFO
-    // =========================================================
+    
 
     public class TournamentInfo
     {
@@ -56,9 +56,9 @@ namespace GamingTournamentSystem.Models
     }
 
 
-    // =========================================================
+    
     // MATCH INFO
-    // =========================================================
+    
 
     public class MatchInfo
     {
@@ -82,9 +82,9 @@ namespace GamingTournamentSystem.Models
     }
 
 
-    // =========================================================
+    
     // LEADERBOARD INFO
-    // =========================================================
+    
 
     public class LeaderboardInfo
     {

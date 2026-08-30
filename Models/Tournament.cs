@@ -1,9 +1,3 @@
-// ======================================================
-// File: Tournament.cs
-// Purpose:
-// Represents a tournament entity and stores
-// tournament information.
-// ======================================================
 
 namespace GamingTournamentSystem.Models
 {

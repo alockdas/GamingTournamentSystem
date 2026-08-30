@@ -12,9 +12,9 @@ namespace GamingTournamentSystem.Menus
             leaderboardService = new LeaderboardService();
         }
 
-        // ======================================================
+        
         // Leaderboard Menu
-        // ======================================================
+        
         public void Show()
         {
             while (true)
@@ -49,9 +49,9 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+        
         // View Leaderboard
-        // ======================================================
+        
         private void ViewLeaderboard()
         {
             Console.Clear();
@@ -101,9 +101,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Pause
-        // ======================================================
+        
         private void Pause()
         {
             Console.WriteLine();

@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly TeamService teamService;
         private readonly Team? editingTeam;
 
-        // =========================================================
+        
         // ADD Constructor
-        // =========================================================
+        
         public TeamAddForm()
         {
             InitializeComponent();
@@ -26,9 +26,9 @@ namespace GamingTournamentSystem.Forms
                 "Enter the information below to register a new team.";
         }
 
-        // =========================================================
+        
         // UPDATE Constructor
-        // =========================================================
+        
         public TeamAddForm(Team team)
         {
             InitializeComponent();
@@ -43,9 +43,9 @@ namespace GamingTournamentSystem.Forms
             LoadTeamInformation();
         }
 
-        // =========================================================
+        
         // Load Existing Team Information
-        // =========================================================
+        
         private void LoadTeamInformation()
         {
             if (editingTeam == null)
@@ -70,14 +70,14 @@ namespace GamingTournamentSystem.Forms
                 editingTeam.CoachName;
         }
 
-        // =========================================================
+        
         // SAVE
-        // =========================================================
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // -----------------------------------------------------
+            
             // Validation
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(txtTournamentID.Text))
             {
@@ -191,9 +191,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Create Team Object
-            // -----------------------------------------------------
+            
 
             Team team = new Team(
                 editingTeam?.TeamID ?? 0,
@@ -210,9 +210,9 @@ namespace GamingTournamentSystem.Forms
                 editingTeam?.Points ?? 0
             );
 
-            // -----------------------------------------------------
+            
             // ADD
-            // -----------------------------------------------------
+            
 
             try
             {
@@ -227,9 +227,9 @@ namespace GamingTournamentSystem.Forms
                         MessageBoxIcon.Information);
                 }
 
-                // -------------------------------------------------
+                
                 // UPDATE
-                // -------------------------------------------------
+                
 
                 else
                 {
@@ -268,9 +268,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // CANCEL
-        // =========================================================
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

@@ -1,8 +1,4 @@
-// ======================================================
-// File: TournamentMenu.cs
-// Purpose:
-// Handles all user interactions related to tournaments.
-// ======================================================
+
 
 using GamingTournamentSystem.Helpers;
 using GamingTournamentSystem.Models;
@@ -105,9 +101,9 @@ namespace GamingTournamentSystem.Menus
 
             Pause();
         }
-        // ======================================================
+        
         // Display all tournaments from the database
-        // ======================================================
+        
         private void ViewTournaments()
         {
             Console.Clear();
@@ -157,9 +153,9 @@ namespace GamingTournamentSystem.Menus
 
 
 
-        // ======================================================
+        
         // Update an existing tournament
-        // ======================================================
+        
         private void UpdateTournament()
         {
             Console.Clear();
@@ -220,9 +216,9 @@ namespace GamingTournamentSystem.Menus
         }
 
 
-        // ======================================================
+        
         // Delete a tournament
-        // ======================================================
+        
         private void DeleteTournament()
         {
             Console.Clear();

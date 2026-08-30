@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly LeaderboardService leaderboardService;
         private readonly AdminDashboard adminDashboard;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public LeaderboardForm(AdminDashboard dashboard)
         {
             InitializeComponent();
@@ -24,17 +24,17 @@ namespace GamingTournamentSystem.Forms
             LoadLeaderboard();
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void LeaderboardForm_Load(object sender, EventArgs e)
         {
             LoadLeaderboard();
         }
 
-        // =========================================================
+        
         // Load Leaderboard
-        // =========================================================
+        
         private void LoadLeaderboard()
         {
             try
@@ -75,9 +75,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // BACK
-        // =========================================================
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             adminDashboard.Show();

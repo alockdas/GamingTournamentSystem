@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly TournamentService tournamentService;
         private readonly AdminDashboard adminDashboard;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public TournamentForm(AdminDashboard dashboard)
         {
             InitializeComponent();
@@ -24,17 +24,17 @@ namespace GamingTournamentSystem.Forms
             LoadTournaments();
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void TournamentForm_Load(object sender, EventArgs e)
         {
             LoadTournaments();
         }
 
-        // =========================================================
+        
         // Load All Tournaments
-        // =========================================================
+        
         private void LoadTournaments()
         {
             try
@@ -71,9 +71,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // ADD TOURNAMENT
-        // =========================================================
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             using (TournamentAddForm addForm =
@@ -86,9 +86,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // UPDATE TOURNAMENT
-        // =========================================================
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvTournaments.SelectedRows.Count == 0)
@@ -155,9 +155,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // DELETE TOURNAMENT
-        // =========================================================
+        
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvTournaments.SelectedRows.Count == 0)
@@ -230,18 +230,18 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // BACK
-        // =========================================================
+        
         private void btnBack_Click(object sender, EventArgs e)
         {
             adminDashboard.Show();
             this.Close();
         }
 
-        // =========================================================
+        
         // Double Click Row
-        // =========================================================
+        
         private void dgvTournaments_CellDoubleClick(
             object sender,
             DataGridViewCellEventArgs e)

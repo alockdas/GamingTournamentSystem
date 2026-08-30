@@ -13,9 +13,9 @@ namespace GamingTournamentSystem.Services
             databaseManager = new DatabaseManager();
         }
 
-        // ======================================================
+        
         // Get Leaderboard
-        // ======================================================
+        
         public List<Team> GetLeaderboard()
         {
             List<Team> teams = new List<Team>();

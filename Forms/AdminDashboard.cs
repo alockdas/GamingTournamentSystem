@@ -9,9 +9,9 @@ namespace GamingTournamentSystem.Forms
     {
         private readonly User currentUser;
 
-        // =========================================================
+        
         // Constructor
-        // =========================================================
+        
         public AdminDashboard(User user)
         {
             InitializeComponent();
@@ -21,9 +21,9 @@ namespace GamingTournamentSystem.Forms
             LoadUserInformation();
         }
 
-        // =========================================================
+        
         // Load User Information
-        // =========================================================
+        
         private void LoadUserInformation()
         {
             if (currentUser != null)
@@ -39,17 +39,17 @@ namespace GamingTournamentSystem.Forms
                 DateTime.Now.ToString("MMMM dd, yyyy");
         }
 
-        // =========================================================
+        
         // Form Load
-        // =========================================================
+        
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
             ShowDashboard();
         }
 
-        // =========================================================
+        
         // Dashboard
-        // =========================================================
+        
         private void btnNavDashboard_Click(object sender, EventArgs e)
         {
             SetSelectedButton(btnNavDashboard);
@@ -77,9 +77,9 @@ namespace GamingTournamentSystem.Forms
 
             pnlMainContent.Controls.Clear();
 
-            // =====================================================
+            
             // Dashboard Cards
-            // =====================================================
+            
 
             Panel cardTournaments =
                 CreateDashboardCard(
@@ -131,9 +131,9 @@ namespace GamingTournamentSystem.Forms
             pnlMainContent.Controls.Add(cardReports);
         }
 
-        // =========================================================
+        
         // Create Dashboard Card
-        // =========================================================
+        
         private Panel CreateDashboardCard(
             string icon,
             string title,
@@ -148,9 +148,9 @@ namespace GamingTournamentSystem.Forms
             card.Location = location;
             card.Size = new Size(270, 135);
 
-            // -----------------------------------------------------
+            
             // Icon
-            // -----------------------------------------------------
+            
             Label lblIcon = new Label();
 
             lblIcon.AutoSize = false;
@@ -167,9 +167,9 @@ namespace GamingTournamentSystem.Forms
             lblIcon.TextAlign =
                 ContentAlignment.MiddleCenter;
 
-            // -----------------------------------------------------
+            
             // Title
-            // -----------------------------------------------------
+            
             Label lblTitle = new Label();
 
             lblTitle.AutoSize = false;
@@ -191,9 +191,9 @@ namespace GamingTournamentSystem.Forms
 
             lblTitle.Text = title;
 
-            // -----------------------------------------------------
+            
             // Description
-            // -----------------------------------------------------
+            
             Label lblDescription = new Label();
 
             lblDescription.AutoSize = false;
@@ -215,9 +215,9 @@ namespace GamingTournamentSystem.Forms
 
             lblDescription.Text = description;
 
-            // -----------------------------------------------------
+            
             // Add controls
-            // -----------------------------------------------------
+            
             card.Controls.Add(lblIcon);
             card.Controls.Add(lblTitle);
             card.Controls.Add(lblDescription);
@@ -225,9 +225,9 @@ namespace GamingTournamentSystem.Forms
             return card;
         }
 
-        // =========================================================
+        
         // Tournament Management
-        // =========================================================
+        
         private void btnNavTournament_Click(object sender, EventArgs e)
         {
             try
@@ -252,9 +252,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // Team Management
-        // =========================================================
+        
         private void btnNavTeam_Click(object sender, EventArgs e)
         {
             SetSelectedButton(btnNavTeam);
@@ -267,12 +267,9 @@ namespace GamingTournamentSystem.Forms
             this.Hide();
         }
 
-        // =========================================================
-        // Player Management
-        // =========================================================
-        // =========================================================
+        
 // Player Management
-// =========================================================
+
 private void btnNavPlayer_Click(object sender, EventArgs e)
 {
     try
@@ -297,9 +294,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
     }
 }
 
-        // =========================================================
+        
         // Match Management
-        // =========================================================
+        
         private void btnNavMatch_Click(object sender, EventArgs e)
         {
             try
@@ -324,9 +321,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
             }
         }
 
-        // =========================================================
+        
         // Leaderboard
-        // =========================================================
+        
         private void btnNavLeaderboard_Click(object sender, EventArgs e)
         {
             try
@@ -351,9 +348,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
             }
         }
 
-        // =========================================================
+        
         // Reports
-        // =========================================================
+        
         private void btnNavReports_Click(object sender, EventArgs e)
         {
             try
@@ -378,9 +375,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
             }
         }
 
-        // =========================================================
+        
         // Create Page Message
-        // =========================================================
+        
         private Label CreatePageMessage(
             string title,
             string message)
@@ -418,14 +415,14 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
             return label;
         }
 
-        // =========================================================
+        
         // Selected Navigation Button
-        // =========================================================
+        
         private void SetSelectedButton(Button selectedButton)
         {
-            // -----------------------------------------------------
+            
             // Reset all buttons
-            // -----------------------------------------------------
+            
 
             Button[] buttons =
             {
@@ -446,9 +443,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
                     Color.FromArgb(33, 37, 41);
             }
 
-            // -----------------------------------------------------
+            
             // Select current button
-            // -----------------------------------------------------
+            
 
             selectedButton.BackColor =
                 Color.FromArgb(30, 109, 235);
@@ -457,9 +454,9 @@ private void btnNavPlayer_Click(object sender, EventArgs e)
                 Color.White;
         }
 
-        // =========================================================
+        
         // Logout
-        // =========================================================
+        
         private void btnLogout_Click(
             object? sender,
             EventArgs e)

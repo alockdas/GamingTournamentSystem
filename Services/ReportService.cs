@@ -13,9 +13,9 @@ namespace GamingTournamentSystem.Services
             databaseManager = new DatabaseManager();
         }
 
-        // ======================================================
+        
         // Tournament Report
-        // ======================================================
+        
         public List<Tournament> GetTournamentReport()
         {
             List<Tournament> tournaments = new List<Tournament>();

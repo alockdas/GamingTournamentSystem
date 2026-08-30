@@ -16,9 +16,9 @@ namespace GamingTournamentSystem.Services
             databaseManager = new DatabaseManager();
         }
 
-        // =========================================================
+        
         // GET TOTAL TOURNAMENT COUNT
-        // =========================================================
+        
 
         public int GetTournamentCount()
         {
@@ -36,9 +36,9 @@ namespace GamingTournamentSystem.Services
             return Convert.ToInt32(command.ExecuteScalar());
         }
 
-        // =========================================================
+        
         // GET PLAYER MATCH COUNT
-        // =========================================================
+        
 
         public int GetPlayerMatchCount(int userId)
         {
@@ -70,9 +70,9 @@ namespace GamingTournamentSystem.Services
                 command.ExecuteScalar());
         }
 
-        // =========================================================
+        
         // GET TEAM POINTS
-        // =========================================================
+        
 
         public int GetTeamPoints(int userId)
         {
@@ -108,9 +108,9 @@ namespace GamingTournamentSystem.Services
             return Convert.ToInt32(result);
         }
 
-        // =========================================================
+        
         // GET MY TEAM
-        // =========================================================
+        
 
         public TeamInfo? GetMyTeam(int userId)
         {
@@ -210,9 +210,9 @@ namespace GamingTournamentSystem.Services
             return null;
         }
 
-        // =========================================================
+        
         // GET ALL TOURNAMENTS
-        // =========================================================
+        
 
         public List<TournamentInfo> GetTournaments()
         {
@@ -282,9 +282,9 @@ namespace GamingTournamentSystem.Services
             return tournaments;
         }
 
-        // =========================================================
+        
         // GET PLAYER MATCHES
-        // =========================================================
+        
 
         public List<MatchInfo> GetMyMatches(int userId)
         {
@@ -399,9 +399,9 @@ namespace GamingTournamentSystem.Services
             return matches;
         }
 
-        // =========================================================
+        
         // GET LEADERBOARD
-        // =========================================================
+        
 
         public List<LeaderboardInfo> GetLeaderboard()
         {
@@ -481,9 +481,9 @@ namespace GamingTournamentSystem.Services
             return leaderboard;
         }
 
-        // =========================================================
+        
         // PROFILE
-        // =========================================================
+        
 
         public User? ViewProfile(int userId)
         {
@@ -543,9 +543,9 @@ namespace GamingTournamentSystem.Services
             return null;
         }
 
-        // =========================================================
+        
         // MENU COMPATIBILITY METHODS
-        // =========================================================
+        
 
         public void ViewMyTeam(int userId)
         {

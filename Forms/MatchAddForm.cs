@@ -11,9 +11,9 @@ namespace GamingTournamentSystem.Forms
         private readonly MatchService matchService;
         private readonly Match? editingMatch;
 
-        // =========================================================
+        
         // ADD Constructor
-        // =========================================================
+        
         public MatchAddForm()
         {
             InitializeComponent();
@@ -30,9 +30,9 @@ namespace GamingTournamentSystem.Forms
             UpdateWinnerFieldState();
         }
 
-        // =========================================================
+        
         // UPDATE Constructor
-        // =========================================================
+        
         public MatchAddForm(Match match)
         {
             InitializeComponent();
@@ -47,9 +47,9 @@ namespace GamingTournamentSystem.Forms
             LoadMatchInformation();
         }
 
-        // =========================================================
+        
         // Load Existing Match Information
-        // =========================================================
+        
         private void LoadMatchInformation()
         {
             if (editingMatch == null)
@@ -89,9 +89,9 @@ namespace GamingTournamentSystem.Forms
             UpdateWinnerFieldState();
         }
 
-        // =========================================================
+        
         // Status Changed
-        // =========================================================
+        
         private void cmbStatus_SelectedIndexChanged(
             object sender,
             EventArgs e)
@@ -99,9 +99,9 @@ namespace GamingTournamentSystem.Forms
             UpdateWinnerFieldState();
         }
 
-        // =========================================================
+        
         // Winner Field State
-        // =========================================================
+        
         private void UpdateWinnerFieldState()
         {
             if (cmbStatus == null ||
@@ -121,14 +121,14 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // SAVE
-        // =========================================================
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // -----------------------------------------------------
+            
             // Tournament ID
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(
                     txtTournamentID.Text))
@@ -169,9 +169,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Team 1 ID
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(
                     txtTeam1ID.Text))
@@ -200,9 +200,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Team 2 ID
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(
                     txtTeam2ID.Text))
@@ -243,9 +243,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Match Date
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(
                     txtMatchDate.Text))
@@ -279,9 +279,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Match Time
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(
                     txtMatchTime.Text))
@@ -314,9 +314,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Venue
-            // -----------------------------------------------------
+            
 
             if (string.IsNullOrWhiteSpace(
                     txtVenue.Text))
@@ -331,9 +331,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Status
-            // -----------------------------------------------------
+            
 
             string status =
                 cmbStatus.SelectedItem?.ToString()
@@ -351,9 +351,9 @@ namespace GamingTournamentSystem.Forms
                 return;
             }
 
-            // -----------------------------------------------------
+            
             // Winner Team ID
-            // -----------------------------------------------------
+            
 
             int? winnerTeamID = null;
 
@@ -402,9 +402,9 @@ namespace GamingTournamentSystem.Forms
                 winnerTeamID = winnerID;
             }
 
-            // -----------------------------------------------------
+            
             // Create Match Object
-            // -----------------------------------------------------
+            
 
             Match match = new Match(
                 editingMatch?.MatchID ?? 0,
@@ -419,9 +419,9 @@ namespace GamingTournamentSystem.Forms
                 editingMatch?.IsLeaderboardUpdated ?? false
             );
 
-            // -----------------------------------------------------
+            
             // ADD / UPDATE
-            // -----------------------------------------------------
+            
 
             try
             {
@@ -472,9 +472,9 @@ namespace GamingTournamentSystem.Forms
             }
         }
 
-        // =========================================================
+        
         // CANCEL
-        // =========================================================
+        
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

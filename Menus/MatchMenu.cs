@@ -17,9 +17,9 @@ namespace GamingTournamentSystem.Menus
             teamService = new TeamService();
         }
 
-        // ======================================================
+        
         // Display Match Menu
-        // ======================================================
+        
         public void Show()
         {
             while (true)
@@ -68,9 +68,9 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+        
         // Add Match
-        // ======================================================
+        
         private void AddMatch()
         {
             Console.Clear();
@@ -182,9 +182,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-                // ======================================================
+                
         // View All Matches
-        // ======================================================
+        
         private void ViewMatches()
         {
             Console.Clear();
@@ -232,9 +232,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Update Match
-        // ======================================================
+        
         private void UpdateMatch()
         {
             Console.Clear();
@@ -385,9 +385,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Delete Match
-        // ======================================================
+        
         private void DeleteMatch()
         {
             Console.Clear();
@@ -432,9 +432,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // View Matches (Without Pause)
-        // ======================================================
+        
         private void ViewMatchesWithoutPause()
         {
             List<Match> matches = matchService.GetAllMatches();
@@ -469,9 +469,9 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+        
         // Pause
-        // ======================================================
+        
         private void Pause()
         {
             Console.WriteLine();

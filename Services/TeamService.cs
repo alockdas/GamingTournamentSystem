@@ -14,9 +14,9 @@ namespace GamingTournamentSystem.Services
             databaseManager = new DatabaseManager();
         }
 
-        // ======================================================
+        
         // Add a new team to the database
-        // ======================================================
+        
         public void AddTeam(Team team)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -43,9 +43,9 @@ namespace GamingTournamentSystem.Services
         }
 
 
-        // ======================================================
+        
         // Get all teams from the database
-        // ======================================================
+        
         public List<Team> GetAllTeams()
         {
             List<Team> teams = new List<Team>();
@@ -84,9 +84,9 @@ namespace GamingTournamentSystem.Services
             return teams;
         }
 
-        // ======================================================
+        
         // Check if a team exists
-        // ======================================================
+        
         public bool TeamExists(int teamID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -106,9 +106,9 @@ namespace GamingTournamentSystem.Services
             }
         }
 
-        // ======================================================
+        
         // Update an existing team
-        // ======================================================
+        
         public bool UpdateTeam(Team team)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())
@@ -142,9 +142,9 @@ namespace GamingTournamentSystem.Services
         }
 
 
-        // ======================================================
+        
         // Delete a team
-        // ======================================================
+        
         public bool DeleteTeam(int teamID)
         {
             using (MySqlConnection connection = databaseManager.GetConnection())

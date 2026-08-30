@@ -1,8 +1,4 @@
-// ======================================================
-// File: TeamMenu.cs
-// Purpose:
-// Handles all user interactions related to teams.
-// ======================================================
+
 
 using GamingTournamentSystem.Helpers;
 using GamingTournamentSystem.Models;
@@ -23,9 +19,9 @@ namespace GamingTournamentSystem.Menus
             tournamentService = new TournamentService();
         }
 
-        // ======================================================
+        
         // Display Team Management Menu
-        // ======================================================
+        
         public void Show()
         {
             while (true)
@@ -74,9 +70,9 @@ namespace GamingTournamentSystem.Menus
             }
         }
 
-        // ======================================================
+        
         // Add a new team
-        // ======================================================
+        
         private void AddTeam()
         {
             Console.Clear();
@@ -149,9 +145,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-                // ======================================================
+                
         // Display all teams
-        // ======================================================
+        
         private void ViewTeams()
         {
             Console.Clear();
@@ -201,9 +197,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Update an existing team
-        // ======================================================
+        
         private void UpdateTeam()
         {
             Console.Clear();
@@ -293,9 +289,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Delete a team
-        // ======================================================
+        
         private void DeleteTeam()
         {
             Console.Clear();
@@ -354,9 +350,9 @@ namespace GamingTournamentSystem.Menus
             Pause();
         }
 
-        // ======================================================
+        
         // Pause the screen
-        // ======================================================
+        
         private void Pause()
         {
             Console.WriteLine();

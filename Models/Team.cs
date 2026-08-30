@@ -1,26 +1,22 @@
-// ======================================================
-// File: Team.cs
-// Purpose:
-// Represents a team participating in a tournament.
-// ======================================================
+
 
 namespace GamingTournamentSystem.Models
 {
     public class Team
     {
-        // ======================================================
+        
         // Primary Key
-        // ======================================================
+        
         public int TeamID { get; set; }
 
-        // ======================================================
+        
         // Foreign Key
-        // ======================================================
+        
         public int TournamentID { get; set; }
 
-        // ======================================================
+        
         // Team Information
-        // ======================================================
+        
         public string TeamName { get; set; } = "";
 
         public string CaptainName { get; set; } = "";
@@ -31,9 +27,9 @@ namespace GamingTournamentSystem.Models
 
         public string CoachName { get; set; } = "";
 
-        // ======================================================
+        
         // Leaderboard Information
-        // ======================================================
+        
         public int MatchesPlayed { get; set; }
 
         public int Wins { get; set; }
@@ -44,17 +40,17 @@ namespace GamingTournamentSystem.Models
 
         public int Points { get; set; }
 
-        // ======================================================
+        
         // Empty Constructor
-        // ======================================================
+        
         public Team()
         {
 
         }
 
-        // ======================================================
+        
         // Constructor for Adding a New Team
-        // ======================================================
+        
         public Team(
             int tournamentID,
             string teamName,
@@ -77,9 +73,9 @@ namespace GamingTournamentSystem.Models
             Points = 0;
         }
 
-        // ======================================================
+        
         // Constructor for Updating Team
-        // ======================================================
+        
         public Team(
             int teamID,
             int tournamentID,
@@ -98,9 +94,9 @@ namespace GamingTournamentSystem.Models
             CoachName = coachName;
         }
 
-        // ======================================================
+        
         // Constructor for Loading Team from Database
-        // ======================================================
+        
         public Team(
             int teamID,
             int tournamentID,

@@ -1,16 +1,11 @@
-// ======================================================
-// File: InputHelper.cs
-// Purpose:
-// Provides reusable methods for taking validated user input.
-// ======================================================
 using System.Text.RegularExpressions;
 namespace GamingTournamentSystem.Helpers
 {
     public static class InputHelper
     {
-        // ======================================================
+        
         // Read an integer value
-        // ======================================================
+        
         public static int ReadInt(string message)
         {
             while (true)
@@ -26,9 +21,9 @@ namespace GamingTournamentSystem.Helpers
             }
         }
 
-        // ======================================================
+        
         // Read a decimal value
-        // ======================================================
+        
         public static decimal ReadDecimal(string message)
         {
             while (true)
@@ -44,9 +39,9 @@ namespace GamingTournamentSystem.Helpers
             }
         }
 
-        // ======================================================
+        
         // Read a date
-        // ======================================================
+        
         public static DateTime ReadDate(string message)
         {
             while (true)
@@ -62,9 +57,9 @@ namespace GamingTournamentSystem.Helpers
             }
         }
 
-        // ======================================================
+        
         // Read a non-empty string
-        // ======================================================
+        
         public static string ReadString(string message)
         {
             while (true)
@@ -82,9 +77,9 @@ namespace GamingTournamentSystem.Helpers
             }
         }
 
-        // ======================================================
+        
         // Read tournament status
-        // ======================================================
+        
         public static string ReadStatus()
         {
             while (true)
@@ -139,9 +134,9 @@ namespace GamingTournamentSystem.Helpers
             }
         }
 
-        // ======================================================
+        
         // Read a valid email address
-        // ======================================================
+        
         public static string ReadEmail(string message)
         {
             while (true)
@@ -167,9 +162,9 @@ namespace GamingTournamentSystem.Helpers
             }
         }
 
-        // ======================================================
+        
         // Read a time
-        // ======================================================
+        
         public static TimeSpan ReadTime(string message)
         {
             while (true)

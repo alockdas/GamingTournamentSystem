@@ -22,17 +22,17 @@ namespace GamingTournamentSystem.Models
 
         public bool IsLeaderboardUpdated { get; set; }
 
-        // ==========================================
+        
         // Empty Constructor
-        // ==========================================
+        
         public Match()
         {
 
         }
 
-        // ==========================================
+        
         // Constructor for Add Match
-        // ==========================================
+        
         public Match(
             int tournamentID,
             int team1ID,
@@ -55,9 +55,9 @@ namespace GamingTournamentSystem.Models
             IsLeaderboardUpdated = false;
         }
 
-        // ==========================================
+        
         // Constructor for Update / Load
-        // ==========================================
+        
         public Match(
             int matchID,
             int tournamentID,
